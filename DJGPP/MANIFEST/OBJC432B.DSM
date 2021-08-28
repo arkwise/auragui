@@ -1,0 +1,41 @@
+#
+# DSM for gcc 4.3.2
+#
+
+dsm-file-version: 1.1
+dsm-name: objc432b
+dsm-version: 0.5.0
+
+dsm-author: @porter@
+dsm-author-email: @e_mail@
+
+name: objc
+version: 4.3.2
+manifest: objc432b
+type: binaries
+sources-dsm: gcc432s
+short-description: GNU Compiler Collection, Objective C compiler
+organisation: Free Software Foundation
+license: GNU General Public License
+web-site: http://gcc.gnu.org
+
+porter: @porter@
+porter-email: @e_mail@
+
+simtelnet-path: v2gnu/
+zip: objc432b.zip
+
+#
+# Dependencies
+#
+
+replaces: objc < 4.3.2
+
+requires: DPMI
+requires: djdev >= 2.04 Beta 1
+requires: binutils >= 2.16
+requires: gcc 4.3.2
+conflicts-with: objc < 4.3.2
+
+# For reading docs
+depends-on: info-reader
