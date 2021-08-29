@@ -9,23 +9,26 @@ the original works were done by lukas lipka, point mad, floria xaiver, chase fin
 Aura always was opensource https://sourceforge.net/projects/auraguifreedos/ but this code was messy, buggy and not maintained very well. this new project is much cleaner code and everything is working.
 
 # GOALS
+OUr mission is to make Aura/ozone desktop a modern usable retro platform that allows users to connect online easily and develop dos and aura applications that can be shared and developed online new and old system.
 
-# 1 TCP
+# 1 TCP (Already DONE√)
 TCP library (wattcp) has been added to the "aura m5" kernel which requires a ne2000 driver or any packet driver to run the aura kernel and connect to the internet.
 the apps htmlget, myip and PING are NOT public license but i (chelson) have shared them anyway in order for people to make their own apps in the future.
 
-# 2 Judas Library HD ac97 audio (azalia)
+# 2 Judas Library HD ac97 audio (azalia) (to be done)
 the plan is to add this to the aura kernel in the next coming weeks. i have been testing this on real hardware with some pretty good success from this project https://github.com/volkertb/JUDAS but i have also made a large amount of updates for more hardware devices.
 
-# 3 netplay, doslife online games service
+# 3 netplay, doslife online games service (in development)
 earlier in 2020 we built a tic tac toe game that can be played via server and over LAN. the basic logic was figured out and we will add this game to aura gui. one of the goals i would like to see is people create online games and chat services etc like the good old msn zone days.
 
 while i am working on the Dead Sea's game i am using some of the online game features we are writing for use on the doslife service which will give coders an API to allow them to create simple dos games that can connect to the doscore server no matter how basic or primitive the games are.
 
 having an API, SDK and a platform for people to create and share DOS based games and entertainment could make dos a popular retro platform with a purpose!
 
-# 4 Aura SDK
+# 4 Aura SDK (kind of done-ish)
 while the code will always be hosted here i am planing on releasing a zip, bootable cd/USB SDK that has a pre built DJGPP development environment with all the required libraries ready to rock and roll to encourage people to develop games using the kit and the Doslife API.
+
+the illkirch development app needs to generate code but this inst too hard.
 
 # 5 Seal 2 GUI
 we will also compiled the seal 2 gui and going to dub it as 2.1.3 or something with, judas, doslife and tcp also included but this will be later.
