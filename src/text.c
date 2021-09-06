@@ -5,14 +5,14 @@
 //  (c) Copyright 2003 Point Mad. All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-#include "stdio.h"
-#include "stdarg.h"
-#include "types.h"
 #include "text.h"
+
+#include <stdio.h>
+#include <stdarg.h>
+#include <string.h>
 #include "dynld.h"
 #include "internal.h"
 #include "debug.h"
-#include <string.h>
 
 /** @defgroup kerneltext Text manipulation (kernel)
         A set of functions for string manipulation

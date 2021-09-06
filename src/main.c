@@ -10,7 +10,6 @@
 #define KERNEL_FILE
 
 #include "allegro.h"
-#include <sys/socket.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -21,21 +20,21 @@
 #include "widget.h"
 #include "menu.h"
 
-//NETWORKING STUFF!
-	struct sockaddr_in addr;  //for networking
-	struct hostent *he;
-	fd_set readhandles;
-	struct timeval timeout;
+// //NETWORKING STUFF!
+// 	struct sockaddr_in addr;  //for networking
+// 	struct hostent *he;
+// 	fd_set readhandles;
+// 	struct timeval timeout;
 
-	typedef struct aurasockets AURASOCKETS;
-	struct aurasockets{
-      	int used;
-	        int id;
-       		int socket;
-	        struct sockaddr_in addr;
-	};
-	AURASOCKETS aurasocket[100];
-//END INITIAL NETWORKING STUFF
+// 	typedef struct aurasockets AURASOCKETS;
+// 	struct aurasockets{
+//       	int used;
+// 	        int id;
+//        		int socket;
+// 	        struct sockaddr_in addr;
+// 	};
+// 	AURASOCKETS aurasocket[100];
+// //END INITIAL NETWORKING STUFF
 
 
 #define TSS(x) DebugMessage("Type: %s\tSize: %i %i", #x, sizeof(x),sizeof(x)%8);

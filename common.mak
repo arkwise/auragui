@@ -63,9 +63,15 @@ $(OBJ_DIR)/xapps/mines.o \
 $(OBJ_DIR)/xapps/o3pad.o \
 $(OBJ_DIR)/xapps/laby.o \
 $(OBJ_DIR)/xapps/sample.o \
-#$(OBJ_DIR)/xapps/htmlget.o \
+$(OBJ_DIR)/xapps/xbatch.o \
+$(OBJ_DIR)/xapps/orchid.o \
+$(OBJ_DIR)/xapps/mbox.o \
+$(OBJ_DIR)/xapps/login.o \
+$(OBJ_DIR)/xapps/convmpeg.o \
 $(OBJ_DIR)/xapps/myip.o \
-$(OBJ_DIR)/xapps/xbatch.o 
+$(OBJ_DIR)/xapps/htmlget.o
+#$(OBJ_DIR)/xapps/ping.o \
+
 
 
 APPLD = \
@@ -103,9 +109,14 @@ bin/xapps/o3pad.app \
 bin/xapps/laby.app \
 bin/xapps/sample.app \
 bin/xapps/xbatch.app \
-bin/xapps/illkirch.app 
-#bin/xapps/htmlget.app \
-#bin/xapps/myip.app \
+bin/xapps/illkirch.app \
+bin/xapps/orchid.app \
+bin/xapps/mbox.app \
+bin/xapps/login.app \
+bin/xapps/convmpeg.app \
+bin/xapps/myip.app \
+bin/xapps/htmlget.app
+#bin/xapps/ping.app \
 
 
 
@@ -406,13 +417,19 @@ $(MAIN) : $(OBJ_LIST1) $(OBJ_LIST2)
 	gcc -g -o $(MAIN) $(OBJ_LIST1) $(OBJ_LIST2) $(LIB_LIST)
 
 $(OBJ_DIR)/xlib/%.o: src/xlib/%.c
-	gcc $(CFLAGS) -c $< -o $@
+	gcc $(CFLAGS) -Dfar= -Dnear= -Dhuge= -c $< -o $@
+
+$(OBJ_DIR)/xapps/myip.o: src/xapps/myip.c
+	gcc $(CFLAGS) -c $< -o $@ -lwatt
 
 $(OBJ_DIR)/xapps/%.o: src/xapps/%.c
 	gcc $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/illkirch/%.o: src/illkirch/%.c
 	gcc $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/desktop/%.o: src/xapps/desktop/%.c
+	gcc $(CFLAGS) -c $< -o $@	
 
 $(OBJ_DIR)/xlib/%.o: src/dms/%.c
 	gcc $(CFLAGS) -c $< -o $@
@@ -489,8 +506,23 @@ bin/xapps/ttt.app: $(OBJ_DIR)/xapps/ttt.o
 bin/xapps/laby.app: $(OBJ_DIR)/xapps/laby.o
 	$(DYNLDLNK) bin/xapps/laby.app $(OBJ_DIR)/xapps/laby.o
 
+bin/xapps/orchid.app: $(OBJ_DIR)/xapps/orchid.o
+	$(DYNLDLNK) bin/xapps/orchid.app $(OBJ_DIR)/xapps/orchid.o
+
+bin/xapps/mbox.app: $(OBJ_DIR)/xapps/mbox.o res/ssplay.res
+	$(DYNLDLNK) -Rres/ssplay.res bin/xapps/mbox.app $(OBJ_DIR)/xapps/mbox.o
+
+bin/xapps/login.app: $(OBJ_DIR)/xapps/login.o
+	$(DYNLDLNK) bin/xapps/login.app $(OBJ_DIR)/xapps/login.o
+
+bin/xapps/convmpeg.app: $(OBJ_DIR)/xapps/convmpeg.o
+	$(DYNLDLNK) bin/xapps/convmpeg.app $(OBJ_DIR)/xapps/convmpeg.o
+
 bin/xapps/mines.app: $(OBJ_DIR)/xapps/mines.o
 	$(DYNLDLNK) bin/xapps/mines.app $(OBJ_DIR)/xapps/mines.o
+
+bin/xapps/ping.app: $(OBJ_DIR)/xapps/ping.o
+	$(DYNLDLNK) bin/xapps/ping.app $(OBJ_DIR)/xapps/ping.o
 
 bin/xapps/o3pad.app: $(OBJ_DIR)/xapps/o3pad.o
 	$(DYNLDLNK) bin/xapps/o3pad.app $(OBJ_DIR)/xapps/o3pad.o

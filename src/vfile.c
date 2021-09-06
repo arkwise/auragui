@@ -37,6 +37,9 @@
 #include <stdarg.h>
 #include "internal.h"
 #include "string.h"
+#include "types.h"
+#include "debug.h"
+
 
 #define TYPE_HDD                        0xF0000001
 #define TYPE_FDD                        0xF0000002

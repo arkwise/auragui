@@ -1,0 +1,61 @@
+#
+# DSM for Watt-32 tcp/ip 2.2 dev.rel. 11 binaries.
+# Written by Juan Manuel Guerrero <juan.guerrero@gmx.de> 2019-12-31
+# Product compiled using gcc346b, bnu2331b and djdev206.
+#
+
+dsm-file-version: 1.0
+dsm-name: wat3211b
+dsm-version: 0.6.1
+
+type: binaries
+
+dsm-author: Juan Manuel Guerrero
+dsm-author-email: juan.guerrero@gmx.de
+
+name: Watt-32
+version: 2.2 dev.rel. 11 release 1
+manifest: wat3211b
+libraries-dsm:
+documentation-dsm:
+sources-dsm: wat3211s
+short-description: Binaries for Watt-32 tcp/ip version 2.2 dev.rel. 11.
+long-description: Watt-32 is a library for making networked TCP/IP programs\n\
+in the language of C and C++ under DOS and Windows-NT.
+
+license: 
+# author of Waterloo tcp/ip (WatTCP).
+author: Erick Engelke
+author-email: erick@uwaterloo.ca
+# author of Watt-32.
+author: Gisle Vanem
+author-email: gvanem@yahoo.no
+# maintainer.
+maintainer: Gisle Vanem
+maintainer-email: gvanem@yahoo.no
+# For reporting bugs.
+mailing-list: watt-32@yahoogroups.com
+# The home page of Watt-32 tcp/ip.
+web-site: http://www.watt-32.net/
+# The ftp site of Watt-32 tcp/ip.
+ftp-site: http://www.watt-32.net/
+# For discussing DJGPP- and DOS/Windows-specific aspects.
+mailing-list: djgpp@delorie.com
+newsgroup: comp.os.msdos.djgpp
+
+porter: Juan Manuel Guerrero
+porter-email: juan.guerrero@gmx.de
+
+simtelnet-path: v2tk/
+zip: wat3211br2.zip
+
+changelog: contrib/Watt-32-2.2-dev.rel.11/changes
+
+pre-install-readme: contrib/Watt-32-2.2-dev.rel.11/README
+pre-install-readme: contrib/Watt-32-2.2-dev.rel.11/README.TOO
+pre-install-readme: contrib/Watt-32-2.2-dev.rel.11/djgpp/README
+
+requires: DPMI 0.9
+requires: bash >= 2.05b release 3
+
+replaces: Watt-32 < 2.2 dev.rel. 11 release 1

@@ -1,3 +1,5 @@
+/* Copyright (C) 2015 DJ Delorie, see COPYING.DJ for details */
+/* Copyright (C) 2013 DJ Delorie, see COPYING.DJ for details */
 /* Copyright (C) 1998 DJ Delorie, see COPYING.DJ for details */
 /* Copyright (C) 1995 DJ Delorie, see COPYING.DJ for details */
 /* Provided by Cygnus Support (jtc@cygnus.com) */
@@ -15,7 +17,7 @@
 
 /*
  * from: @(#)fdlibm.h 5.1 93/09/24
- * $Id: math.h,v 1.3 1999/07/04 14:37:08 eliz Exp $
+ * $Id: math.h,v 1.11.2.1 2015/07/19 11:29:21 juan.guerrero Exp $
  */
 
 #ifndef _MATH_H_
@@ -33,8 +35,8 @@ union __dmath
   double d;
 };
 
-extern const union __dmath __infinity;
-#define HUGE_VAL (__infinity.d)
+extern double __dj_huge_val;
+#define HUGE_VAL (__dj_huge_val)
 
 /*
  * XOPEN/SVID
@@ -95,12 +97,12 @@ extern  _LIB_VERSION_TYPE  _LIB_VERSION;
 #ifndef __cplusplus
 struct exception
 {
-	int type;
-	const char *name;
-	double arg1;
-	double arg2;
-	double retval;
-	int err;
+  int type;
+  const char *name;
+  double arg1;
+  double arg2;
+  double retval;
+  int err;
 };
 #endif
 
@@ -154,6 +156,34 @@ extern double fabs __P((double));
 extern double floor __P((double));
 extern double fmod __P((double, double));
 
+#if !defined(__STRICT_ANSI__) || defined(__cplusplus) || \
+    defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
+
+/* ISO C99 types and macros. */
+extern long long int llrintf __P((float));
+extern long long int llrint __P((double));
+extern long long int llrintl __P((long double));
+extern long int lrintf __P((float));
+extern long int lrint __P((double));
+extern long int lrintl __P((long double));
+extern long long int llroundf __P((float));
+extern long long int llround __P((double));
+extern long long int llroundl __P((long double));
+extern long int lroundf __P((float));
+extern long int lround __P((double));
+extern long int lroundl __P((long double));
+extern float roundf __P((float));
+extern double round __P((double));
+extern long double roundl __P((long double));
+extern float truncf __P((float));
+extern double trunc __P((double));
+extern long double truncl __P((long double));
+extern int isinfl __P((long double));
+extern int isnanl __P((long double));
+extern int finitel __P((long double));
+#endif /* !defined (__STRICT_ANSI__) || defined(__cplusplus)
+          || defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L */
+
 #if !defined(__STRICT_ANSI__) && !defined(_POSIX_SOURCE)
 extern double erf __P((double));
 extern double erfc __P((double));
@@ -194,6 +224,8 @@ extern double scalb __P((double, double));
 #ifndef __cplusplus
 extern int matherr __P((struct exception *));
 #endif
+
+extern long double rintl __P((long double));
 
 /*
  * IEEE Test Vector
@@ -241,6 +273,7 @@ extern float frexpf __P((float, int *));
 extern float ldexpf __P((float, int));
 extern float logf __P((float));
 extern float log10f __P((float));
+extern float log2f __P((float));
 extern float modff __P((float, float *));
 
 extern float powf __P((float, float));
@@ -267,7 +300,6 @@ extern float nanf __P((void));
 extern float y0f __P((float));
 extern float y1f __P((float));
 extern float ynf __P((int, float));
-#define log2f(x) (logf (x) / (float) M_LOG2_E)
 
 extern float acoshf __P((float));
 extern float asinhf __P((float));

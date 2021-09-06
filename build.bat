@@ -1,5 +1,6 @@
 @ECHO OFF
-:MAKE 
+:MAKE
+dj 
 @make all
 pause
 cls

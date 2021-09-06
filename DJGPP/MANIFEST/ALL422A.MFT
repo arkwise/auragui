@@ -1,4 +1,9 @@
+manifest/all422a.ver
+manifest/all422a.mft
 info/allegro.info
+lib/liballeg.a
+lib/liballd.a
+lib/liballp.a
 include/allegro.h
 include/allegro/3d.h
 include/allegro/3dmaths.h
@@ -56,8 +61,3 @@ include/allegro/platform/aldjgpp.h
 include/allegro/platform/alplatf.h
 include/allegro/platform/astdint.h
 include/allegro/platform/aldos.h
-lib/liballeg.a
-lib/liballd.a
-lib/liballp.a
-manifest/all422a.ver
-manifest/all422a.mft

@@ -2,9 +2,9 @@
 //																																//
 //	Welcome																											//
 //																																//
-//	Aura Milestone 5 																								//
+//	Aura Milestone 4 																								//
 //																																//
-//	(c) Copyright 2020 Finn Technologies, doscore and Chase Finn. All rights reserved.	//
+//	(c) Copyright 2013 Finn Technologies and Chase Finn. All rights reserved.	//
 //																																//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  
@@ -15,9 +15,9 @@
 #include "label.h"
 #include "button.h"
 #include "window.h"
-
+#include "desktop/desktop.h"
 ////////////////////////////////////////////////////////////////////////////////
-l_ulong AppVersion	= ULONG_ID(1,0,0,1);
+l_ulong AppVersion	= ULONG_ID(1,0,0,0);
 char AppName[]		= "Welcome";
 l_uid	nUID		= "app:welcome";
 l_uid NeededLibs[]	= { "button","label", "window","widget","" };
@@ -65,7 +65,7 @@ l_bool AppEventHandler ( PWidget o, PEvent Event )
 		    	case BTN_SETUP:
                 	{
 						WidgetDispose ( WIDGET(w) );
-                        FileRun("xapps/setup.app", NULL); 
+                        FileRun("applications/setup.app", NULL); 
                         return true;
                 	}
 	                break;
@@ -124,10 +124,10 @@ l_int Main ( int argc, l_text *argv )
 ////////////////////////////////////////////////////////////////////////////////
 void Close (void)
 {
-Authenticate();
-						WidgetDispose ( WIDGET(w) );
+	Authenticate();
+	WidgetDispose ( WIDGET(w) );
 						//CloseApp(&Me);
-      return;
+    return;
 
 }
 ////////////////////////////////////////////////////////////////////////////////

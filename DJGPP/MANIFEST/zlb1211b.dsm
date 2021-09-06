@@ -1,0 +1,69 @@
+#
+# DSM for zlib 1.2.11 binaries.
+# Written by Juan Manuel Guerrero <juan.guerrero@gmx.de> 2017-01-31
+# Product compiled using gcc346b, bnu227b and djdev206.
+#
+
+dsm-file-version: 1.0
+dsm-name:  zlb1211b
+dsm-version: 0.6.1
+
+type: binaries
+
+dsm-author: Juan Manuel Guerrero
+dsm-author-email: juan.guerrero@gmx.de
+
+name: zlib
+version: 1.2.11 release 1
+manifest:  zlb1211b
+documentation-dsm:  zlb1211d
+sources-dsm:  zlb1211s
+short-description: Binaries for zlib library version 1.2.11.
+long-description: zlib 1.2.11 is a general purpose data compression library.\n\
+All the code is thread safe.
+
+license:  GNU GPL
+author: Jean-loup Gailly
+author-email: jloup@gzip.org
+author: Mark Adler
+author-email: madler@alumni.caltech.edu
+maintainer: Jean-loup Gailly
+maintainer-email: jloup@gzip.org
+# For reporting bugs.
+mailing-list: zlib@gzip.org
+# The home page of zlib.
+web-site: http://www.zlib.org
+# The ftp site of zlib.
+ftp-site:
+# For discussing DJGPP- and DOS/Windows-specific aspects.
+mailing-list: djgpp@delorie.com
+newsgroup: comp.os.msdos.djgpp
+
+porter: Juan Manuel Guerrero
+porter-email: juan.guerrero@gmx.de
+
+simtelnet-path: v2tk/
+zip:  zlb1211b.zip
+
+changelog: contrib/zlib-1.2.11/ChangeLog
+
+pre-install-readme: contrib/zlib-1.2.11/README
+pre-install-readme: contrib/zlib-1.2.11/djgpp/README
+
+# These are required to use zlib:
+requires: DPMI 0.9
+
+replaces: zlib < 1.2.11 release 1
+
+# For reading the docs.
+depends-on: man
+depends-on: less
+
+# For NLS support.
+# If gettext and/or libiconv has been compiled
+# as DXE3 module then it is mandatory to install
+# the .dxe libraries.
+# For generating the .gmo files:
+requires: gettext >= 0.19.2 release 1
+# For recoding the .gmo files from unix to dos charset:
+requires: libiconv >= 1.14 release 2

@@ -5,9 +5,10 @@
 //  Copyright (c) 2003 Point Mad, Lukas Lipka. All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
-#include"kernel.h"
-#include"registry.h"
-#include"internal.h"
+#include "kernel.h"
+#include "registry.h"
+#include "internal.h"
+#include "debug.h"
 
 PRegKey MainKey = NULL;
 

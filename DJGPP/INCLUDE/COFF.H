@@ -1,12 +1,34 @@
+/* Copyright (C) 2015 DJ Delorie, see COPYING.DJ for details */
+/* Copyright (C) 2012 DJ Delorie, see COPYING.DJ for details */
+/* Copyright (C) 2003 DJ Delorie, see COPYING.DJ for details */
 /* Copyright (C) 1995 DJ Delorie, see COPYING.DJ for details */
 #ifndef __dj_include_coff_h_
 #define __dj_include_coff_h_
+
+/* the following are needed when cross compiling hostbin exes */
+#ifndef _DJ_DEFINED_NATIVE_TYPES
+#define _DJ_DEFINED_NATIVE_TYPES
+#ifdef  _LP64			/* Note: win64 is LLP64 */
+# define LONG32  int
+# define ULONG32 unsigned int
+#else
+# define LONG32  long
+# define ULONG32 unsigned long
+#endif
+/* make sure it is 32 bits */
+typedef int _DJCHK_LONG32[(sizeof(LONG32) == 4)*3 - 1];
+#endif /* _DEFINED_NATIVE_TYPES */
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #ifndef __dj_ENFORCE_ANSI_FREESTANDING
+
+#if (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L) \
+  || !defined(__STRICT_ANSI__) || defined(__cplusplus)
+
+#endif /* (__STDC_VERSION__ >= 199901L) || !__STRICT_ANSI__ */
 
 #ifndef __STRICT_ANSI__
 
@@ -17,13 +39,13 @@ extern "C" {
 /********************** FILE HEADER **********************/
 
 struct external_filehdr {
-	unsigned short f_magic;		/* magic number			*/
-	unsigned short f_nscns;		/* number of sections		*/
-	unsigned long f_timdat;	/* time & date stamp		*/
-	unsigned long f_symptr;	/* file pointer to symtab	*/
-	unsigned long f_nsyms;		/* number of symtab entries	*/
-	unsigned short f_opthdr;	/* sizeof(optional hdr)		*/
-	unsigned short f_flags;		/* flags			*/
+  unsigned short f_magic;	/* magic number			*/
+  unsigned short f_nscns;	/* number of sections		*/
+  ULONG32        f_timdat;	/* time & date stamp		*/
+  ULONG32        f_symptr;	/* file pointer to symtab	*/
+  ULONG32        f_nsyms;	/* number of symtab entries	*/
+  unsigned short f_opthdr;	/* sizeof(optional hdr)		*/
+  unsigned short f_flags;	/* flags			*/
 };
 
 
@@ -42,42 +64,43 @@ struct external_filehdr {
 
 
 
-#define	I386MAGIC	0x14c
+#define I386MAGIC	0x14c
 #define I386AIXMAGIC	0x175
-#define I386BADMAG(x) (((x).f_magic!=I386MAGIC) && (x).f_magic!=I386AIXMAGIC)
+#define I386BADMAG(x)	(((x).f_magic != I386MAGIC) && ((x).f_magic != I386AIXMAGIC))
 
 
-#define	FILHDR	struct external_filehdr
-#define	FILHSZ	sizeof(FILHDR)
+#define FILHDR	struct external_filehdr
+#define FILHSZ	sizeof(FILHDR)
 
 
 /********************** AOUT "OPTIONAL HEADER" **********************/
 
 
-typedef struct 
+typedef struct
 {
-  unsigned short 	magic;		/* type of file				*/
+  unsigned short	magic;		/* type of file				*/
   unsigned short	vstamp;		/* version stamp			*/
-  unsigned long	tsize;		/* text size in bytes, padded to FW bdry*/
-  unsigned long	dsize;		/* initialized data "  "		*/
-  unsigned long	bsize;		/* uninitialized data "   "		*/
-  unsigned long	entry;		/* entry pt.				*/
-  unsigned long 	text_start;	/* base of text used for this file */
-  unsigned long 	data_start;	/* base of data used for this file */
+  ULONG32		tsize;		/* text size in bytes, padded to FW bdry*/
+  ULONG32		dsize;		/* initialized data "  "		*/
+  ULONG32		bsize;		/* uninitialized data "   "		*/
+  ULONG32		entry;		/* entry pt.				*/
+  ULONG32		text_start;	/* base of text used for this file */
+  ULONG32		data_start;	/* base of data used for this file */
 }
 AOUTHDR;
 
 
 typedef struct gnu_aout {
-	unsigned long info;
-	unsigned long tsize;
-	unsigned long dsize;
-	unsigned long bsize;
-	unsigned long symsize;
-	unsigned long entry;
-	unsigned long txrel;
-	unsigned long dtrel;
-	} GNU_AOUT;
+  ULONG32 info;
+  ULONG32 tsize;
+  ULONG32 dsize;
+  ULONG32 bsize;
+  ULONG32 symsize;
+  ULONG32 entry;
+  ULONG32 txrel;
+  ULONG32 dtrel;
+}
+GNU_AOUT;
 
 #define AOUTSZ (sizeof(AOUTHDR))
 
@@ -91,36 +114,37 @@ typedef struct gnu_aout {
 
 
 struct external_scnhdr {
-	char		s_name[8];	/* section name			*/
-	unsigned long		s_paddr;	/* physical address, aliased s_nlib */
-	unsigned long		s_vaddr;	/* virtual address		*/
-	unsigned long		s_size;		/* section size			*/
-	unsigned long		s_scnptr;	/* file ptr to raw data for section */
-	unsigned long		s_relptr;	/* file ptr to relocation	*/
-	unsigned long		s_lnnoptr;	/* file ptr to line numbers	*/
-	unsigned short		s_nreloc;	/* number of relocation entries	*/
-	unsigned short		s_nlnno;	/* number of line number entries*/
-	unsigned long		s_flags;	/* flags			*/
+  char			s_name[8];	/* section name			*/
+  ULONG32		s_paddr;	/* physical address, aliased s_nlib */
+  ULONG32		s_vaddr;	/* virtual address		*/
+  ULONG32		s_size;		/* section size			*/
+  ULONG32		s_scnptr;	/* file ptr to raw data for section */
+  ULONG32		s_relptr;	/* file ptr to relocation	*/
+  ULONG32		s_lnnoptr;	/* file ptr to line numbers	*/
+  unsigned short	s_nreloc;	/* number of relocation entries	*/
+  unsigned short	s_nlnno;	/* number of line number entries*/
+  ULONG32		s_flags;	/* flags			*/
 };
 
-#define	SCNHDR	struct external_scnhdr
-#define	SCNHSZ	sizeof(SCNHDR)
+#define SCNHDR	struct external_scnhdr
+#define SCNHSZ	sizeof(SCNHDR)
 
 /*
  * names of "special" sections
  */
-#define _TEXT	".text"
-#define _DATA	".data"
-#define _BSS	".bss"
-#define _COMMENT ".comment"
-#define _LIB ".lib"
+#define _TEXT		".text"
+#define _DATA		".data"
+#define _BSS		".bss"
+#define _COMMENT	".comment"
+#define _LIB		".lib"
 
 /*
  * s_flags "type"
  */
-#define STYP_TEXT	 (0x0020)	/* section contains text only */
-#define STYP_DATA	 (0x0040)	/* section contains data only */
-#define STYP_BSS	 (0x0080)	/* section contains bss only */
+#define STYP_TEXT         (0x0020)      /* section contains text only */
+#define STYP_DATA         (0x0040)      /* section contains data only */
+#define STYP_BSS          (0x0080)      /* section contains bss only */
+#define STYP_NRELOC_OVFL  (0x01000000)  /* section contains extended relocations */
 
 /********************** LINE NUMBERS **********************/
 
@@ -130,16 +154,17 @@ struct external_scnhdr {
  * symbol table index of the function name.
  */
 struct external_lineno {
-	union {
-		unsigned long l_symndx __attribute__((packed));	/* function name symbol index, iff l_lnno == 0 */
-		unsigned long l_paddr __attribute__((packed));		/* (physical) address of line number */
-	} l_addr;
-	unsigned short l_lnno;						/* line number */
-};
+  union {
+    ULONG32 l_symndx;				/* function name symbol index, iff l_lnno == 0 */
+    ULONG32 l_paddr;				/* (physical) address of line number */
+  } l_addr;
+  unsigned short l_lnno;			/* line number */
+} __attribute__((packed));
 
-
-#define	LINENO	struct external_lineno
-#define	LINESZ	sizeof(LINENO)
+#define LINENO	struct external_lineno
+#define LINESZ	sizeof(LINENO)
+/* make sure that structure packing is correct */
+typedef int _DJCHK_EXTLINENO[(LINESZ==6)*3 - 1];
 
 
 /********************** SYMBOLS **********************/
@@ -148,79 +173,81 @@ struct external_lineno {
 #define E_FILNMLEN	14	/* # characters in a file name		*/
 #define E_DIMNUM	4	/* # array dimensions in auxiliary entry */
 
-struct external_syment 
+struct external_syment
 {
   union {
     char e_name[E_SYMNMLEN];
     struct {
-      unsigned long e_zeroes __attribute__((packed));
-      unsigned long e_offset __attribute__((packed));
+      ULONG32 e_zeroes;
+      ULONG32 e_offset;
     } e;
   } e;
-  unsigned long e_value __attribute__((packed));
+  ULONG32 e_value;
   short e_scnum;
   unsigned short e_type;
   unsigned char e_sclass;
   unsigned char e_numaux;
-};
+} __attribute__((packed));
 
 #define N_BTMASK	(0xf)
 #define N_TMASK		(0x30)
 #define N_BTSHFT	(4)
 #define N_TSHIFT	(2)
-  
+
 union external_auxent {
-	struct {
-		unsigned long x_tagndx __attribute__((packed));		/* str, un, or enum tag indx */
-		union {
-			struct {
-			    unsigned short  x_lnno;				/* declaration line number */
-			    unsigned short  x_size; 				/* str/union/array size */
-			} x_lnsz;
-			unsigned long x_fsize __attribute__((packed));		/* size of function */
-		} x_misc;
-		union {
-			struct {					/* if ISFCN, tag, or .bb */
-			    unsigned long x_lnnoptr __attribute__((packed));	/* ptr to fcn line # */
-			    unsigned long x_endndx __attribute__((packed));	/* entry ndx past block end */
-			} x_fcn;
-			struct {					/* if ISARY, up to 4 dimen. */
-			    unsigned short x_dimen[E_DIMNUM];
-			} x_ary;
-		} x_fcnary;
-		unsigned short x_tvndx;						/* tv index */
-	} x_sym;
+  struct {
+    ULONG32 x_tagndx;					/* str, un, or enum tag indx */
+    union {
+      struct {
+        unsigned short x_lnno;				/* declaration line number */
+        unsigned short x_size;				/* str/union/array size */
+      } __attribute__((packed)) x_lnsz;
+      ULONG32 x_fsize;					/* size of function */
+    } x_misc;
+    union {
+      struct {						/* if ISFCN, tag, or .bb */
+        ULONG32 x_lnnoptr;				/* ptr to fcn line # */
+        ULONG32 x_endndx;				/* entry ndx past block end */
+      } x_fcn;
+      struct {						/* if ISARY, up to 4 dimen. */
+        unsigned short x_dimen[E_DIMNUM];
+      } x_ary;
+    } __attribute__((packed)) x_fcnary;
+    unsigned short x_tvndx;				/* tv index */
+  } __attribute__((packed)) x_sym;
 
-	union {
-		char x_fname[E_FILNMLEN];
-		struct {
-			unsigned long x_zeroes __attribute__((packed));
-			unsigned long x_offset __attribute__((packed));
-		} x_n;
-	} x_file;
+  union {
+    char x_fname[E_FILNMLEN];
+    struct {
+      ULONG32 x_zeroes;
+      ULONG32 x_offset;
+    } x_n;
+  } __attribute__((packed)) x_file;
 
-	struct {
-		unsigned long x_scnlen __attribute__((packed));		/* section length */
-		unsigned short x_nreloc;					/* # relocation entries */
-		unsigned short x_nlinno;					/* # line numbers */
-	} x_scn;
+  struct {
+    ULONG32 x_scnlen;					/* section length */
+    unsigned short x_nreloc;				/* # relocation entries */
+    unsigned short x_nlinno;				/* # line numbers */
+  } __attribute__((packed)) x_scn;
 
-        struct {
-		unsigned long x_tvfill __attribute__((packed));		/* tv fill value */
-		unsigned short x_tvlen;						/* length of .tv */
-		unsigned short x_tvran[2];					/* tv range */
-	} x_tv;		/* info about .tv section (in auxent of symbol .tv)) */
+  struct {
+    ULONG32 x_tvfill;					/* tv fill value */
+    unsigned short x_tvlen;				/* length of .tv */
+    unsigned short x_tvran[2];				/* tv range */
+  } __attribute__((packed)) x_tv;			/* info about .tv section (in auxent of symbol .tv)) */
+
+} __attribute__((packed));
+
+#define SYMENT	struct external_syment
+#define SYMESZ	sizeof(SYMENT)
+#define AUXENT	union external_auxent
+#define AUXESZ	sizeof(AUXENT)
+/* make sure that structure packing is correct */
+typedef int _DJCHK_EXTSYMENT[(SYMESZ==18)*3 - 1];
+typedef int _DJCHK_EXTAUXENT[(AUXESZ==18)*3 - 1];
 
 
-};
-
-#define	SYMENT	struct external_syment
-#define	SYMESZ	sizeof(SYMENT)
-#define	AUXENT	union external_auxent
-#define	AUXESZ	sizeof(AUXENT)
-
-
-#	define _ETEXT	"etext"
+#define _ETEXT	"etext"
 
 
 /* Relocatable symbols have number of the section in which they are defined,
@@ -266,8 +293,8 @@ union external_auxent {
 #define ISPTR(x)	(((x) & N_TMASK) == (DT_PTR << N_BTSHFT))
 #define ISFCN(x)	(((x) & N_TMASK) == (DT_FCN << N_BTSHFT))
 #define ISARY(x)	(((x) & N_TMASK) == (DT_ARY << N_BTSHFT))
-#define ISTAG(x)	((x)==C_STRTAG||(x)==C_UNTAG||(x)==C_ENTAG)
-#define DECREF(x) ((((x)>>N_TSHIFT)&~N_BTMASK)|((x)&N_BTMASK))
+#define ISTAG(x)	(((x) == C_STRTAG) || ((x) == C_UNTAG) || ((x) == C_ENTAG))
+#define DECREF(x)	((((x) >> N_TSHIFT) & ~N_BTMASK) | ((x) & N_BTMASK))
 
 /********************** STORAGE CLASSES **********************/
 
@@ -305,16 +332,16 @@ union external_auxent {
 /********************** RELOCATION DIRECTIVES **********************/
 
 
-
 struct external_reloc {
-  unsigned long r_vaddr __attribute__((packed));
-  unsigned long r_symndx __attribute__((packed));
+  ULONG32        r_vaddr;
+  ULONG32        r_symndx;
   unsigned short r_type;
-};
-
+} __attribute__((packed));
 
 #define RELOC struct external_reloc
 #define RELSZ sizeof(RELOC)
+/* make sure that structure packing is correct */
+typedef int _DJCHK_EXTRELOC[(RELSZ==10)*3 - 1];
 
 #define RELOC_REL32	20	/* 32-bit PC-relative address */
 #define RELOC_ADDR32	6	/* 32-bit absolute address */

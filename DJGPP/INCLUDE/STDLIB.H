@@ -1,3 +1,10 @@
+/* Copyright (C) 2015 DJ Delorie, see COPYING.DJ for details */
+/* Copyright (C) 2014 DJ Delorie, see COPYING.DJ for details */
+/* Copyright (C) 2013 DJ Delorie, see COPYING.DJ for details */
+/* Copyright (C) 2003 DJ Delorie, see COPYING.DJ for details */
+/* Copyright (C) 2002 DJ Delorie, see COPYING.DJ for details */
+/* Copyright (C) 2001 DJ Delorie, see COPYING.DJ for details */
+/* Copyright (C) 2000 DJ Delorie, see COPYING.DJ for details */
 /* Copyright (C) 1999 DJ Delorie, see COPYING.DJ for details */
 /* Copyright (C) 1998 DJ Delorie, see COPYING.DJ for details */
 /* Copyright (C) 1995 DJ Delorie, see COPYING.DJ for details */
@@ -14,11 +21,17 @@ extern "C" {
   
 /* Some programs think they know better... */
 #undef NULL
+#if (__GNUC__ >= 4) && defined(__cplusplus)
+#  define NULL          __null
+#elif defined(__cplusplus)
+#  define NULL          0
+#else
+#  define NULL          ((void*)0)
+#endif
 
 #define EXIT_FAILURE	1
 #define EXIT_SUCCESS	0
 #define MB_CUR_MAX	__dj_mb_cur_max
-#define NULL		0
 #define RAND_MAX	2147483647
 
 extern int __dj_mb_cur_max;
@@ -33,12 +46,15 @@ typedef struct {
   long rem;
 } ldiv_t;
 
+#ifndef _SIZE_T
 __DJ_size_t
-#undef __DJ_size_t
-#define __DJ_size_t
+#define _SIZE_T
+#endif
+
+#ifndef _WCHAR_T
 __DJ_wchar_t
-#undef __DJ_wchar_t
-#define __DJ_wchar_t
+#define _WCHAR_T
+#endif
 
 void	abort(void) __attribute__((noreturn));
 int	abs(int _i);
@@ -71,45 +87,63 @@ int	system(const char *_s);
 size_t	wcstombs(char *_s, const wchar_t *_wcs, size_t _n);
 int	wctomb(char *_s, wchar_t _wchar);
 
+#if (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L) \
+  || !defined(__STRICT_ANSI__) || defined(__cplusplus)
+
+typedef struct {
+  long long int quot;
+  long long int rem;
+} lldiv_t;
+
+void		_Exit(int _status) __attribute__((noreturn));
+long long int	atoll(const char *_s);
+long long int	llabs(long long int _i);
+lldiv_t		lldiv(long long int _numer, long long int _denom);
+float		strtof(const char *_s, char **_endptr);
+long double	strtold(const char *_s, char **_endptr);
+long long int	strtoll(const char *_s, char **_endptr, int _base);
+unsigned long long int	strtoull(const char *_s, char **_endptr, int _base);
+
+#endif /* (__STDC_VERSION__ >= 199901L) || !__STRICT_ANSI__ */
+
 #ifndef __STRICT_ANSI__
+
+long	a64l(const char *_string);
+char *	l64a(long _value);
+char *	mktemp(char *_template);
+char *	mkdtemp(char *_template);
+int	mkstemp(char *_template);
+int	putenv(char *_val);
+char *	realpath(const char *_path, char *_resolved);
+int	setenv(const char *_var, const char *_val, int _overwrite);
+int	unsetenv(const char *_var);
 
 #ifndef _POSIX_SOURCE
 
-typedef struct {
-  long long quot;
-  long long rem;
-} lldiv_t;
-
 void *		alloca(size_t _size);
 long double	_atold(const char *_s);
-long long	atoll(const char *_s);
 void		cfree(void *_ptr);
 double          drand48(void);
 char *		ecvtbuf(double _val, int _nd, int *_dp, int *_sn, char *_bf);
 char *		ecvt(double _val, int _nd, int *_dp, int *_sn);
-double          erand48(unsigned short state[3]);
+double          erand48(unsigned short _state[3]);
 char *		fcvtbuf(double _val, int _nd, int *_dp, int *_sn, char *_bf);
 char *		fcvt(double _val, int _nd, int *_dp, int *_sn);
 char *		gcvt(double _val, int _nd, char *_buf);
 char *		getpass(const char *_prompt);
 int		getlongpass(const char *_prompt, char *_buffer, int _max_len);
-char *		itoa(int value, char *buffer, int radix);
-long            jrand48(unsigned short state[3]);
-long long	llabs(long long _i);
-lldiv_t		lldiv(long long _numer, long long _denom);
-void            lcong48(unsigned short param[7]);
+char *		itoa(int _value, char *_buffer, int _radix);
+long            jrand48(unsigned short _state[3]);
+void            lcong48(unsigned short _param[7]);
 unsigned long   lrand48(void);
 long            mrand48(void);
-unsigned long   nrand48(unsigned short state[3]);
-int		putenv(const char *_val);
-unsigned short *seed48(unsigned short state_seed[3]);
-int		setenv(const char *_var, const char *_val, int _replace);
-void            srand48(long seedval);
+unsigned long   nrand48(unsigned short _state[3]);
+unsigned short *seed48(unsigned short _state_seed[3]);
+void            srand48(long _seedval);
 int		stackavail(void);
 long double	_strtold(const char *_s, char **_endptr);
-long long	strtoll(const char *_s, char **_endptr, int _base);
-unsigned long long strtoull(const char *_s, char **_endptr, int _base);
-void		swab(const void *from, void *to, int nbytes);
+void		swab(const void *_from, void *_to, int _nbytes);
+void *		valloc (size_t _amt);
 
 #ifndef alloca
 #define alloca __builtin_alloca

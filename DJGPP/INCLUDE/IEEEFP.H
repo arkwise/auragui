@@ -1,3 +1,4 @@
+/* Copyright (C) 2013 DJ Delorie, see COPYING.DJ for details */
 /* Copyright (C) 1998 DJ Delorie, see COPYING.DJ for details */
 #ifndef __dj_include_ieeefp_h_
 #define __dj_include_ieeefp_h_
@@ -7,6 +8,7 @@ extern "C" {
 #endif
 
 #include <sys/cdefs.h>
+#include <sys/djtypes.h>
 
 /* #include <machine/ieeefp.h> */
 #include <machine/endian.h>
@@ -72,14 +74,13 @@ int _EXFUN(finitef, (float));
 #define __IEEE_DBL_NAN_EXP 0x7ff
 #define __IEEE_FLT_NAN_EXP 0xff
 
+#define isnanf(x)   (((*(__dj_long_a *)&(x) & 0x7f800000L) == 0x7f800000L) && \
+		     ((*(__dj_long_a *)&(x) & 0x007fffffL) != 0000000000L))
 
-#define isnanf(x) (((*(long *)&(x) & 0x7f800000L)==0x7f800000L) && \
-		   ((*(long *)&(x) & 0x007fffffL)!=0000000000L))
+#define isinff(x)   (((*(__dj_long_a *)&(x) & 0x7f800000L) == 0x7f800000L) && \
+		     ((*(__dj_long_a *)&(x) & 0x007fffffL) == 0000000000L))
 
-#define isinff(x) (((*(long *)&(x) & 0x7f800000L)==0x7f800000L) && \
-		   ((*(long *)&(x) & 0x007fffffL)==0000000000L))
-
-#define finitef(x) (((*(long *)&(x) & 0x7f800000L)!=0x7f800000L))
+#define finitef(x)  (((*(__dj_long_a *)&(x) & 0x7f800000L) != 0x7f800000L))
 
 #ifdef __cplusplus
 }

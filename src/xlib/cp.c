@@ -108,11 +108,11 @@ l_bool LibMain ( int argc, l_text *argv )
 
 
 
-	CPAddPanel("Keyboard", "applications/setkeyb.app", NULL, NULL, NULL,0,0);
-	CPAddPanel("Mouse", "applications/setmouse.app", NULL, NULL, NULL,0,0);
-	CPAddPanel("Display device", "applications/setscr.app",NULL, ListKey(Me.Ressource,"SETSCR16"), ListKey(Me.Ressource,"SETSCR32"), 0,0);
-	CPAddPanel("Wallpaper", "applications/setwall.app", NULL, ListKey(Me.Ressource,"SETWALL16"), ListKey(Me.Ressource,"SETWALL32"),0,0);
-	CPAddPanel("Theme manager", "applications/settheme.app", NULL, 0, 0,0,0);
+	CPAddPanel("Keyboard", "xapps/setkeyb.app", NULL, NULL, NULL,0,0);
+	CPAddPanel("Mouse", "xapps/setmouse.app", NULL, NULL, NULL,0,0);
+	CPAddPanel("Display device", "xapps/setscr.app",NULL, ListKey(Me.Ressource,"SETSCR16"), ListKey(Me.Ressource,"SETSCR32"), 0,0);
+	CPAddPanel("Wallpaper", "xapps/setwall.app", NULL, ListKey(Me.Ressource,"SETWALL16"), ListKey(Me.Ressource,"SETWALL32"),0,0);
+	CPAddPanel("Theme manager", "xapps/settheme.app", NULL, 0, 0,0,0);
 
 	CPDriver = malloc(sizeof(TFileDriver));
 	memset(CPDriver, 0, sizeof(TFileDriver));

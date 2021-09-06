@@ -1,0 +1,672 @@
+Watt-32 (2.2.11), GNU-C 4.7.1 (Pent), djgpp 2.03, Nov 30 2020
+PKTDRVR: "NE2000", ver 0.11, API ver ?, mode 3
+CPU: 486, model: 0, vendor: GenuineIntel, speed: 69.903 MHz (1 CPU core)
+
+
+Transmitted: pcarp.c (482), time 00:00:00.013
+ARP:   Request (1), hw 0100, type 0800
+       AC:DE:48:77:99:88 (192.168.1.127) -> 00:00:00:00:00:00 (192.168.1.1)
+
+Received: pcarp.c (1576), time 00:00:01.385, Link-layer loop!
+ARP:   Request (1), hw 0100, type 0800
+       AC:DE:48:77:99:88 (192.168.1.127) -> 00:00:00:00:00:00 (192.168.1.1)
+
+Received: pctcp.c (1137), time 00:00:01.385
+IP4:   10.10.12.59 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum E6DE (ok)
+       id 2D7C, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum C875 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.385
+IP4:   10.10.12.59 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 8774 (ok)
+       id AFE4, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 255.255.255.255 (33445)
+       len 41, chksum E07E (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.386
+IP4:   10.10.12.59 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum E5DE (ok)
+       id 2D7D, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum C875 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.386
+IP4:   10.10.12.59 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 8674 (ok)
+       id AFE5, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 255.255.255.255 (33466)
+       len 41, chksum E069 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.386
+IP4:   10.10.12.59 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum E4DE (ok)
+       id 2D7E, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum C875 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.387
+IP4:   10.10.12.59 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 8574 (ok)
+       id AFE6, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 255.255.255.255 (33467)
+       len 41, chksum E068 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.387
+IP4:   10.10.12.59 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum E3DE (ok)
+       id 2D7F, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum C875 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.387
+IP4:   10.10.12.59 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 8474 (ok)
+       id AFE7, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 255.255.255.255 (33468)
+       len 41, chksum E067 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.388
+IP4:   10.10.12.59 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum E2DE (ok)
+       id 2D80, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum C875 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.388
+IP4:   10.10.12.59 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 8374 (ok)
+       id AFE8, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 255.255.255.255 (33469)
+       len 41, chksum E066 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.388
+IP4:   10.10.12.59 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum E1DE (ok)
+       id 2D81, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum C875 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.388
+IP4:   10.10.12.59 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 8274 (ok)
+       id AFE9, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 255.255.255.255 (33470)
+       len 41, chksum E065 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.389
+IP4:   10.10.12.59 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum E0DE (ok)
+       id 2D82, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum C875 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.389
+IP4:   10.10.12.59 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 8174 (ok)
+       id AFEA, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 255.255.255.255 (33471)
+       len 41, chksum E064 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.389
+IP4:   10.10.12.59 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum DFDE (ok)
+       id 2D83, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum C875 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.389
+IP4:   10.10.12.59 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 8074 (ok)
+       id AFEB, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 255.255.255.255 (33472)
+       len 41, chksum E063 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.390
+IP4:   10.10.12.59 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum DEDE (ok)
+       id 2D84, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum C875 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.390
+IP4:   10.10.12.59 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 7F74 (ok)
+       id AFEC, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 255.255.255.255 (33473)
+       len 41, chksum E062 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.390
+IP4:   10.10.12.59 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum DDDE (ok)
+       id 2D85, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum C875 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.390
+IP4:   10.10.12.59 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 7E74 (ok)
+       id AFED, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 255.255.255.255 (33474)
+       len 41, chksum E061 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.391
+IP4:   10.10.12.59 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum DCDE (ok)
+       id 2D86, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum C875 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.391
+IP4:   10.10.12.59 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 7D74 (ok)
+       id AFEE, ofs 0
+UDP:   NO SOCKET: 10.10.12.59 (33445) -> 255.255.255.255 (33475)
+       len 41, chksum E060 (ok)
+33:    0000: 21 96 03 65 C3 AF AD 6B-C1 44 F2 87 13 4A C8 F6 !–.eÃ¯­kÁDò‡.JÈö
+       0010: 2A 3B 0B 88 7F 6B B9 39-78 FC E0 31 B9 81 32 51 *;.ˆk¹9xüà1¹2Q
+       0020: 2A                                              *
+
+Received: pctcp.c (1137), time 00:00:01.391
+IP4:   10.10.12.177 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 7489 (ok)
+       id 8278, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum EB00 (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.391
+IP4:   10.10.12.177 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 5A7E (ok)
+       id A59B, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 255.255.255.255 (33445)
+       len 41, chksum 030A (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.392
+IP4:   10.10.12.177 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 7389 (ok)
+       id 8279, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum EB00 (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.392
+IP4:   10.10.12.177 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 597E (ok)
+       id A59C, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 255.255.255.255 (33456)
+       len 41, chksum 02FF (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.392
+IP4:   10.10.12.177 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 7289 (ok)
+       id 827A, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum EB00 (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.392
+IP4:   10.10.12.177 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 587E (ok)
+       id A59D, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 255.255.255.255 (33457)
+       len 41, chksum 02FE (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.393
+IP4:   10.10.12.177 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 7189 (ok)
+       id 827B, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum EB00 (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.393
+IP4:   10.10.12.177 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 577E (ok)
+       id A59E, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 255.255.255.255 (33458)
+       len 41, chksum 02FD (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.393
+IP4:   10.10.12.177 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 7089 (ok)
+       id 827C, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum EB00 (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.394
+IP4:   10.10.12.177 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 567E (ok)
+       id A59F, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 255.255.255.255 (33459)
+       len 41, chksum 02FC (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.394
+IP4:   10.10.12.177 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 6F89 (ok)
+       id 827D, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum EB00 (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.394
+IP4:   10.10.12.177 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 557E (ok)
+       id A5A0, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 255.255.255.255 (33460)
+       len 41, chksum 02FB (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.394
+IP4:   10.10.12.177 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 6E89 (ok)
+       id 827E, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum EB00 (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.395
+IP4:   10.10.12.177 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 547E (ok)
+       id A5A1, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 255.255.255.255 (33461)
+       len 41, chksum 02FA (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.395
+IP4:   10.10.12.177 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 6D89 (ok)
+       id 827F, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum EB00 (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+
+Received: pctcp.c (1137), time 00:00:01.395
+IP4:   10.10.12.177 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 537E (ok)
+       id A5A2, ofs 0
+UDP:   NO SOCKET: 10.10.12.177 (33445) -> 255.255.255.255 (33462)
+       len 41, chksum 02F9 (ok)
+33:    0000: 21 0D 6E 68 9C 2A DF 28-4D F8 36 B8 D9 F4 D0 CF !.nhœ*ß(Mø6¸ÙôÐÏ
+       0010: B9 DD C2 46 21 93 8B 2F-BB 0D AC 4D 41 E7 61 24 ¹ÝÂF!“‹/».¬MAça$
+       0020: 73                                              s
+chk_timeout_frags(), bucket 0, active 0, used 0
+chk_timeout_frags(), bucket 1, active 0, used 0
+
+Received: pcarp.c (1576), time 00:00:01.434
+ARP:   Request (1), hw 0100, type 0800
+       00:E0:4C:43:0B:41 (10.10.12.115) -> 00:00:00:00:00:00 (10.10.12.218)
+
+Received: pcarp.c (1576), time 00:00:01.469
+ARP:   Request (1), hw 0100, type 0800
+       8C:EC:4B:55:F0:5F (10.10.12.173) -> 00:00:00:00:00:00 (10.10.12.195)
+
+Received: pcarp.c (1576), time 00:00:01.469
+ARP:   Request (1), hw 0100, type 0800
+       8C:EC:4B:55:F0:5F (10.10.12.173) -> 00:00:00:00:00:00 (10.10.12.23)
+
+Received: pctcp.c (1137), time 00:00:00.518
+IP4:   10.10.12.196 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 5555 (ok)
+       id B684, ofs 0
+UDP:   NO SOCKET: 10.10.12.196 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum 6A08 (ok)
+33:    0000: 21 31 E0 8F 4B 91 4D 27-7F F8 6A BE ED B2 BB 52 !1àK‘M'øj¾í²»R
+       0010: 5E B3 50 85 69 45 E4 6B-7E 03 F4 E5 21 D0 81 98 ^³P…iEäk~.ôå!Ð˜
+       0020: 20                                               
+
+Received: pctcp.c (1137), time 00:00:00.519
+IP4:   10.10.12.196 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 5455 (ok)
+       id B685, ofs 0
+UDP:   NO SOCKET: 10.10.12.196 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum 6A08 (ok)
+33:    0000: 21 31 E0 8F 4B 91 4D 27-7F F8 6A BE ED B2 BB 52 !1àK‘M'øj¾í²»R
+       0010: 5E B3 50 85 69 45 E4 6B-7E 03 F4 E5 21 D0 81 98 ^³P…iEäk~.ôå!Ð˜
+       0020: 20                                               
+
+Received: pctcp.c (1137), time 00:00:00.519
+IP4:   10.10.12.196 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 5355 (ok)
+       id B686, ofs 0
+UDP:   NO SOCKET: 10.10.12.196 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum 6A08 (ok)
+33:    0000: 21 31 E0 8F 4B 91 4D 27-7F F8 6A BE ED B2 BB 52 !1àK‘M'øj¾í²»R
+       0010: 5E B3 50 85 69 45 E4 6B-7E 03 F4 E5 21 D0 81 98 ^³P…iEäk~.ôå!Ð˜
+       0020: 20                                               
+
+Received: pctcp.c (1137), time 00:00:00.520
+IP4:   10.10.12.196 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 5255 (ok)
+       id B687, ofs 0
+UDP:   NO SOCKET: 10.10.12.196 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum 6A08 (ok)
+33:    0000: 21 31 E0 8F 4B 91 4D 27-7F F8 6A BE ED B2 BB 52 !1àK‘M'øj¾í²»R
+       0010: 5E B3 50 85 69 45 E4 6B-7E 03 F4 E5 21 D0 81 98 ^³P…iEäk~.ôå!Ð˜
+       0020: 20                                               
+
+Received: pctcp.c (1137), time 00:00:00.520
+IP4:   10.10.12.196 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 5155 (ok)
+       id B688, ofs 0
+UDP:   NO SOCKET: 10.10.12.196 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum 6A08 (ok)
+33:    0000: 21 31 E0 8F 4B 91 4D 27-7F F8 6A BE ED B2 BB 52 !1àK‘M'øj¾í²»R
+       0010: 5E B3 50 85 69 45 E4 6B-7E 03 F4 E5 21 D0 81 98 ^³P…iEäk~.ôå!Ð˜
+       0020: 20                                               
+
+Received: pctcp.c (1137), time 00:00:00.520
+IP4:   10.10.12.196 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 5055 (ok)
+       id B689, ofs 0
+UDP:   NO SOCKET: 10.10.12.196 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum 6A08 (ok)
+33:    0000: 21 31 E0 8F 4B 91 4D 27-7F F8 6A BE ED B2 BB 52 !1àK‘M'øj¾í²»R
+       0010: 5E B3 50 85 69 45 E4 6B-7E 03 F4 E5 21 D0 81 98 ^³P…iEäk~.ôå!Ð˜
+       0020: 20                                               
+
+Received: pctcp.c (1137), time 00:00:00.520
+IP4:   10.10.12.196 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 4F55 (ok)
+       id B68A, ofs 0
+UDP:   NO SOCKET: 10.10.12.196 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum 6A08 (ok)
+33:    0000: 21 31 E0 8F 4B 91 4D 27-7F F8 6A BE ED B2 BB 52 !1àK‘M'øj¾í²»R
+       0010: 5E B3 50 85 69 45 E4 6B-7E 03 F4 E5 21 D0 81 98 ^³P…iEäk~.ôå!Ð˜
+       0020: 20                                               
+
+Received: pctcp.c (1137), time 00:00:00.521
+IP4:   10.10.12.196 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 4E55 (ok)
+       id B68B, ofs 0
+UDP:   NO SOCKET: 10.10.12.196 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum 6A08 (ok)
+33:    0000: 21 31 E0 8F 4B 91 4D 27-7F F8 6A BE ED B2 BB 52 !1àK‘M'øj¾í²»R
+       0010: 5E B3 50 85 69 45 E4 6B-7E 03 F4 E5 21 D0 81 98 ^³P…iEäk~.ôå!Ð˜
+       0020: 20                                               
+
+Received: pctcp.c (1137), time 00:00:00.521
+IP4:   10.10.12.196 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 4D55 (ok)
+       id B68C, ofs 0
+UDP:   NO SOCKET: 10.10.12.196 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum 6A08 (ok)
+33:    0000: 21 31 E0 8F 4B 91 4D 27-7F F8 6A BE ED B2 BB 52 !1àK‘M'øj¾í²»R
+       0010: 5E B3 50 85 69 45 E4 6B-7E 03 F4 E5 21 D0 81 98 ^³P…iEäk~.ôå!Ð˜
+       0020: 20                                               
+
+Received: pctcp.c (1137), time 00:00:00.521
+IP4:   10.10.12.196 -> 10.10.13.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 4C55 (ok)
+       id B68D, ofs 0
+UDP:   NO SOCKET: 10.10.12.196 (33445) -> 10.10.13.255 (33445)
+       len 41, chksum 6A08 (ok)
+33:    0000: 21 31 E0 8F 4B 91 4D 27-7F F8 6A BE ED B2 BB 52 !1àK‘M'øj¾í²»R
+       0010: 5E B3 50 85 69 45 E4 6B-7E 03 F4 E5 21 D0 81 98 ^³P…iEäk~.ôå!Ð˜
+       0020: 20                                               
+
+Received: pctcp.c (1137), time 00:00:00.722
+IP4:   172.10.12.185 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 23BB (ok)
+       id C6C9, ofs 0
+UDP:   NO SOCKET: 172.10.12.185 (33445) -> 255.255.255.255 (33445)
+       len 41, chksum DB68 (ok)
+33:    0000: 21 90 F8 5A 96 00 1A 67-2D 4B 93 68 F1 2F 6E 57 !øZ–..g-K“hñ/nW
+       0010: B7 5D 01 1C 37 E8 90 77-89 E5 0E 62 2B 35 F6 40 ·]..7èw‰å.b+5ö@
+       0020: 41                                              A
+
+Received: pctcp.c (1137), time 00:00:00.722
+IP4:   172.10.12.185 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 22BB (ok)
+       id C6CA, ofs 0
+UDP:   NO SOCKET: 172.10.12.185 (33445) -> 255.255.255.255 (33526)
+       len 41, chksum DB17 (ok)
+33:    0000: 21 90 F8 5A 96 00 1A 67-2D 4B 93 68 F1 2F 6E 57 !øZ–..g-K“hñ/nW
+       0010: B7 5D 01 1C 37 E8 90 77-89 E5 0E 62 2B 35 F6 40 ·]..7èw‰å.b+5ö@
+       0020: 41                                              A
+
+Received: pctcp.c (1137), time 00:00:00.723
+IP4:   172.10.12.185 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 21BB (ok)
+       id C6CB, ofs 0
+UDP:   NO SOCKET: 172.10.12.185 (33445) -> 255.255.255.255 (33527)
+       len 41, chksum DB16 (ok)
+33:    0000: 21 90 F8 5A 96 00 1A 67-2D 4B 93 68 F1 2F 6E 57 !øZ–..g-K“hñ/nW
+       0010: B7 5D 01 1C 37 E8 90 77-89 E5 0E 62 2B 35 F6 40 ·]..7èw‰å.b+5ö@
+       0020: 41                                              A
+
+Received: pctcp.c (1137), time 00:00:00.723
+IP4:   172.10.12.185 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 20BB (ok)
+       id C6CC, ofs 0
+UDP:   NO SOCKET: 172.10.12.185 (33445) -> 255.255.255.255 (33528)
+       len 41, chksum DB15 (ok)
+33:    0000: 21 90 F8 5A 96 00 1A 67-2D 4B 93 68 F1 2F 6E 57 !øZ–..g-K“hñ/nW
+       0010: B7 5D 01 1C 37 E8 90 77-89 E5 0E 62 2B 35 F6 40 ·]..7èw‰å.b+5ö@
+       0020: 41                                              A
+
+Received: pctcp.c (1137), time 00:00:00.723
+IP4:   172.10.12.185 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 1FBB (ok)
+       id C6CD, ofs 0
+UDP:   NO SOCKET: 172.10.12.185 (33445) -> 255.255.255.255 (33529)
+       len 41, chksum DB14 (ok)
+33:    0000: 21 90 F8 5A 96 00 1A 67-2D 4B 93 68 F1 2F 6E 57 !øZ–..g-K“hñ/nW
+       0010: B7 5D 01 1C 37 E8 90 77-89 E5 0E 62 2B 35 F6 40 ·]..7èw‰å.b+5ö@
+       0020: 41                                              A
+
+Received: pctcp.c (1137), time 00:00:00.724
+IP4:   172.10.12.185 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 1EBB (ok)
+       id C6CE, ofs 0
+UDP:   NO SOCKET: 172.10.12.185 (33445) -> 255.255.255.255 (33530)
+       len 41, chksum DB13 (ok)
+33:    0000: 21 90 F8 5A 96 00 1A 67-2D 4B 93 68 F1 2F 6E 57 !øZ–..g-K“hñ/nW
+       0010: B7 5D 01 1C 37 E8 90 77-89 E5 0E 62 2B 35 F6 40 ·]..7èw‰å.b+5ö@
+       0020: 41                                              A
+
+Received: pctcp.c (1137), time 00:00:00.724
+IP4:   172.10.12.185 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 1DBB (ok)
+       id C6CF, ofs 0
+UDP:   NO SOCKET: 172.10.12.185 (33445) -> 255.255.255.255 (33531)
+       len 41, chksum DB12 (ok)
+33:    0000: 21 90 F8 5A 96 00 1A 67-2D 4B 93 68 F1 2F 6E 57 !øZ–..g-K“hñ/nW
+       0010: B7 5D 01 1C 37 E8 90 77-89 E5 0E 62 2B 35 F6 40 ·]..7èw‰å.b+5ö@
+       0020: 41                                              A
+
+Received: pctcp.c (1137), time 00:00:00.724
+IP4:   172.10.12.185 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 1CBB (ok)
+       id C6D0, ofs 0
+UDP:   NO SOCKET: 172.10.12.185 (33445) -> 255.255.255.255 (33532)
+       len 41, chksum DB11 (ok)
+33:    0000: 21 90 F8 5A 96 00 1A 67-2D 4B 93 68 F1 2F 6E 57 !øZ–..g-K“hñ/nW
+       0010: B7 5D 01 1C 37 E8 90 77-89 E5 0E 62 2B 35 F6 40 ·]..7èw‰å.b+5ö@
+       0020: 41                                              A
+
+Received: pctcp.c (1137), time 00:00:00.724
+IP4:   172.10.12.185 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 1BBB (ok)
+       id C6D1, ofs 0
+UDP:   NO SOCKET: 172.10.12.185 (33445) -> 255.255.255.255 (33533)
+       len 41, chksum DB10 (ok)
+33:    0000: 21 90 F8 5A 96 00 1A 67-2D 4B 93 68 F1 2F 6E 57 !øZ–..g-K“hñ/nW
+       0010: B7 5D 01 1C 37 E8 90 77-89 E5 0E 62 2B 35 F6 40 ·]..7èw‰å.b+5ö@
+       0020: 41                                              A
+
+Received: pctcp.c (1137), time 00:00:00.725
+IP4:   172.10.12.185 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 1ABB (ok)
+       id C6D2, ofs 0
+UDP:   NO SOCKET: 172.10.12.185 (33445) -> 255.255.255.255 (33534)
+       len 41, chksum DB0F (ok)
+33:    0000: 21 90 F8 5A 96 00 1A 67-2D 4B 93 68 F1 2F 6E 57 !øZ–..g-K“hñ/nW
+       0010: B7 5D 01 1C 37 E8 90 77-89 E5 0E 62 2B 35 F6 40 ·]..7èw‰å.b+5ö@
+       0020: 41                                              A
+
+Received: pctcp.c (1137), time 00:00:00.725
+IP4:   172.10.12.185 -> 255.255.255.255
+       IHL 20, ver 4, tos 0, len 61, ttl 128, prot UDP, chksum 19BB (ok)
+       id C6D3, ofs 0
+UDP:   NO SOCKET: 172.10.12.185 (33445) -> 255.255.255.255 (33535)
+       len 41, chksum DB0E (ok)
+33:    0000: 21 90 F8 5A 96 00 1A 67-2D 4B 93 68 F1 2F 6E 57 !øZ–..g-K“hñ/nW
+       0010: B7 5D 01 1C 37 E8 90 77-89 E5 0E 62 2B 35 F6 40 ·]..7èw‰å.b+5ö@
+       0020: 41                                              A
+chk_timeout_frags(), bucket 0, active 0, used 0
+chk_timeout_frags(), bucket 1, active 0, used 0
+_tcp_abort(0016A146) called from pctcp.c (1265). State RESOLVE
+
+ARP-cache:
+      IP: 192.168.1.1     -> 00:00:00:00:00:00, Pending, timed out
+
+Gateways:
+     DEST/MASK        DEV   GATEWAY         (MASK)
+     0.0.0.0/32       eth0  192.168.1.1     (0.0.0.0)
+
+Routes:
+   # GATEWAY         HOST            MASK            FLAGS
+  31 192.168.1.1     98.207.221.49   0.0.0.0         INUSE, PEND
+
+Cache stats:
+      ARP-cache:   hits 0, misses 1
+      Route-cache: hits 0, misses 0
+
+Driver statistics:
+      Rx:        72 pkt,       5295 bytes,      0 errors,      0 lost  (this session)
+      Tx:         1 pkt,         60 bytes,      0 errors
+      Rx:        72 pkt,       5295 bytes,      0 errors,    381 lost  (since boot)
+      Tx:         1 pkt,         60 bytes,      0 errors
+
+MAC   input stats:
+      dropped 9, waiting 0, looped 1, non-IP recv 4 sent 1
+      unknown types, 0, LLC frames 0, IP-recursions 0 
+      wrong handle 0, bad-sync 0, too large 0, too small 0 
+MAC   output stats:
+      Tx errors              0 
+      Tx retries             0
+      Tx timeout             0
+ARP   Requests:              4 recv
+      Requests:              1 sent
+      Replies:               0 recv
+      Replies:               0 sent
+IP4   input stats:
+      total:                59
+      delivered:            59
+IP4   output stats:
+      noroute:               1
+IP6   input stats:
+IP6   output stats:
+ICMP  input stats:
+ICMP  output stats:
+ICMP6 input stats:
+ICMP6 output stats:
+IGMP  input stats:
+IGMP  output stats:
+UDP   input stats:
+      total:                59
+UDP   output stats:
+TCP   input stats:
+TCP   output stats:
+      conn-attempt:          1

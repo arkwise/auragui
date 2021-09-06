@@ -9,6 +9,8 @@
 #ifndef _text_h_included_
 #define _text_h_included_
 
+#include "types.h"
+
 l_ulong TextLen			( l_text t );
 l_text TextChr			( l_text t, l_char c );
 l_text TextRChr			( l_text t, l_char c );

@@ -1,0 +1,13 @@
+gnu/make-4.3/djgpp/README
+gnu/make-4.3/ChangeLog
+gnu/make-4.3/NEWS
+gnu/make-4.3/README
+gnu/make-4.3/tests/README
+manifest/mak43b.dsm
+manifest/mak43b.ver
+manifest/mak43b.mft
+share/info/make.info
+share/man/cat1/make.1
+bin/make.exe
+include/gnumake.h
+gnu/make-4.3

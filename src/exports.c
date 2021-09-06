@@ -4,6 +4,8 @@
 #include "zlib.h"
 #include "grfx.h"
 #include "stdlib.h"
+#include "debug.h"
+#include "mpeg2.h"
 
 l_ubig __udivdi3(l_ubig x, l_ubig y);
 
@@ -946,6 +948,8 @@ void RegisterLibC()
 #include <sys/nearptr.h>
 #include <assert.h>
 #include <sys/exceptn.h>
+#include <tcp.h>
+#include <arpa/inet.h>
 
 int ____registered = 0;
 
@@ -1592,6 +1596,39 @@ void RegisterLibC()
         SYSEXPORT(log1p);
         SYSEXPORT(powi);
         SYSEXPORT(sincos);
+
+        /* for watt32 library external resolve */
+        SYSEXPORT(_w32__ip_delay1);
+        SYSEXPORT(_w32_tcp_open);
+        SYSEXPORT(_inet_ntoa);
+        SYSEXPORT(inet_ntoa);
+        SYSEXPORT(_w32_sock_read);
+        SYSEXPORT(gethostid);
+        SYSEXPORT(_w32_sock_delay);
+        SYSEXPORT(_w32_resolve);
+        SYSEXPORT(_w32_sock_flush);
+        SYSEXPORT(_w32__ip_delay2);
+        SYSEXPORT(watt_sock_init);
+        SYSEXPORT(_w32_sock_dataready);
+        SYSEXPORT(_w32_dbug_init);
+        SYSEXPORT(_w32__ip_delay0);
+        SYSEXPORT(_w32_sock_puts);
+
+        SYSEXPORT(_w32_sock_fastwrite);
+        SYSEXPORT(_w32_sock_close);
+        SYSEXPORT(_w32_usr_init);
+        SYSEXPORT(_w32_sock_setbuf);
+        SYSEXPORT(_w32_tcp_tick);
+        SYSEXPORT(_w32_sockerr);
+        SYSEXPORT(_w32_lookup_host);
+        SYSEXPORT(tzset);
+
+        /* for convmpeg.app */
+        SYSEXPORT(mpeg2_init);
+        SYSEXPORT(mpeg2_parse);
+        SYSEXPORT(mpeg2_buffer);
+        SYSEXPORT(mpeg2_info);
+        SYSEXPORT(mpeg2_close);
   }
 }
 

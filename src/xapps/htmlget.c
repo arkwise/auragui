@@ -5,6 +5,7 @@
 #include "label.h"
 #include "tbox.h"
 #include "iodlg.h"
+#include "tcp.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,11 +13,8 @@
 #include <time.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
 #include <fcntl.h>
 #include <io.h>
-#include <tcp.h>
 
 #ifdef __GNUC__
 #define write _write
@@ -32,7 +30,7 @@
 #define HTTPVER10   "HTTP/1.0"
 #define HTTPVER11   "HTTP/1.1"
 #define strn(s)     s, sizeof(s)-1
-#define  MSG_GET_IT		100001
+#define MSG_GET_IT		100001
 #define MSG_SELECTFILE 	0x00010002
 
 typedef unsigned long  DWORD;
@@ -124,7 +122,6 @@ long header(const char *path) {
 
 int htget(const char *host, int port, const char *path) {
     char line[1024];
-    struct in_addr a, b;
     DWORD hostaddr;
     int status = 0;
     int connected = 0;
@@ -142,7 +139,7 @@ int htget(const char *host, int port, const char *path) {
     name = host;
 
     if ((hostaddr = lookup_host(name, NULL)) == 0) {
-        sprintf(line, dom_strerror(dom_errno));
+        //sprintf(line, dom_strerror(dom_errno));
         DebugMessage(line);
         MessageBox(&Me, "Error Message", line, MBB_OK);
         return (1);

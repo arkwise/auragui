@@ -23,6 +23,7 @@
 
 #include "kernel.h"
 #include "internal.h"
+#include "debug.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

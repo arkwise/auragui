@@ -9,20 +9,21 @@
 #include "window.h"
 #include "button.h"
 #include "label.h"
-#include <tcp.h>
+#include "tcp.h"
+#include "debug.h"
 
 l_ulong AppVersion	= ULONG_ID(0,0,0,1);
 char AppName[]		= "MyIP";
 l_uid	nUID		= "app:regedit";
 l_uid NeededLibs[]	= {"label","button","window", "" };
 
-//**
-//*	Button messages
-//*/
+/**
+*	Button messages
+*/
 #define  MSG_REFRESH		100001
-//**
-//*	Global variables
-//*/
+/**
+*	Global variables
+*/
 PLabel LblLocalIPCaption        = 0;
 PLabel LblInternetIPCaption     = 0;
 PLabel LblLocalIPAdr            = 0;
@@ -92,6 +93,8 @@ void Refresh()
         MessageBox(&Me, "Error", "Unable to open TCP session", MBB_OK);
         break;
  }
+ DebugMessage("local ip: %s", LocalIP);
+ DebugMessage("internet ip: %s", InternetIP);
  LabelSetText(LblLocalIPAdr, LocalIP);
  LabelSetText(LblInternetIPAdr, InternetIP);
 }

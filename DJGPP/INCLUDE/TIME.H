@@ -1,3 +1,8 @@
+/* Copyright (C) 2015 DJ Delorie, see COPYING.DJ for details */
+/* Copyright (C) 2013 DJ Delorie, see COPYING.DJ for details */
+/* Copyright (C) 2011 DJ Delorie, see COPYING.DJ for details */
+/* Copyright (C) 2003 DJ Delorie, see COPYING.DJ for details */
+/* Copyright (C) 2000 DJ Delorie, see COPYING.DJ for details */
 /* Copyright (C) 1999 DJ Delorie, see COPYING.DJ for details */
 /* Copyright (C) 1998 DJ Delorie, see COPYING.DJ for details */
 /* Copyright (C) 1995 DJ Delorie, see COPYING.DJ for details */
@@ -19,17 +24,26 @@ extern "C" {
   
 /* Some programs think they know better... */
 #undef NULL
+#if (__GNUC__ >= 4) && defined(__cplusplus)
+#  define NULL          __null
+#elif defined(__cplusplus)
+#  define NULL          0
+#else
+#  define NULL          ((void*)0)
+#endif
 
-#define NULL 0
+#ifndef _CLOCK_T
 __DJ_clock_t
-#undef __DJ_clock_t
-#define __DJ_clock_t
+#define _CLOCK_T
+#endif
+#ifndef _SIZE_T
 __DJ_size_t
-#undef __DJ_size_t
-#define __DJ_size_t
+#define _SIZE_T
+#endif
+#ifndef _TIME_T
 __DJ_time_t
-#undef __DJ_time_t
-#define __DJ_time_t
+#define _TIME_T
+#endif
 
 struct tm {
   int tm_sec;
@@ -52,8 +66,13 @@ double		difftime(time_t _t1, time_t _t0);
 struct tm *	gmtime(const time_t *_tod);
 struct tm *	localtime(const time_t *_tod);
 time_t		mktime(struct tm *_tptr);
-size_t		strftime(char *_s, size_t _n, const char *_format, const struct tm *_tptr);
+size_t		strftime(char *  _s, size_t _n, const char *  _format, const struct tm *  _tptr);
 time_t		time(time_t *_tod);
+
+#if (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L) \
+  || !defined(__STRICT_ANSI__) || defined(__cplusplus)
+
+#endif /* (__STDC_VERSION__ >= 199901L) || !__STRICT_ANSI__ */
 
 #ifndef __STRICT_ANSI__
 
@@ -61,7 +80,11 @@ time_t		time(time_t *_tod);
 
 extern char *tzname[2];
 
-void	tzset(void);
+char *		asctime_r(const struct tm * __restrict__ _tptr, char * __restrict__ _buf);
+char *		ctime_r(const time_t *_cal, char *_buf);
+struct tm *	gmtime_r(const time_t * __restrict__ _tod, struct tm * __restrict__ _tptr);
+struct tm * 	localtime_r(const time_t * __restrict__ _tod, struct tm * __restrict__ _tptr);
+void		tzset(void);
 
 #ifndef _POSIX_SOURCE
 
@@ -89,6 +112,28 @@ int		select(int _nfds, fd_set *_readfds, fd_set *_writefds, fd_set *_exceptfds, 
 int		settimeofday(struct timeval *_tp, ...);
 void		tzsetwall(void);
 uclock_t	uclock(void);
+
+#if ((__GNUC__ == 4 && __GNUC_MINOR__ >= 8) || (__GNUC__ > 4))
+/* GCC-4.8.0 and newer versions defines _rdtsc as macro in ia32intrin.h
+   included from x86intrin.h (for MMX/SSE/AVX instructions. */
+#undef _rdtsc
+#endif
+
+#include <sys/cdefs.h>
+
+unsigned long long _rdtsc(void);
+
+_EXTERN_INLINE unsigned long long
+_rdtsc(void)
+{
+#if ((__GNUC__ == 4 && __GNUC_MINOR__ >= 8) || (__GNUC__ > 4))
+  return __builtin_ia32_rdtsc();
+#else
+  unsigned long long result;
+  __asm__ __volatile__ ("rdtsc" : "=A"(result) );
+  return result;
+#endif
+}
 
 #endif /* !_POSIX_SOURCE */
 #endif /* !__STRICT_ANSI__ */
