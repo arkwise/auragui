@@ -278,12 +278,10 @@ PDevWidget CreateDevWidget ( TRect r, PDevClass Class ) {
         DevWidgetSetPropertyEx(o,"name",name);
         free(name);
 
-
         DevWidgetSetPropertyEx(o,"r.a.x",&(r.a.x));
         DevWidgetSetPropertyEx(o,"r.a.y",&(r.a.y));
         DevWidgetSetPropertyEx(o,"r.b.x",&(r.b.x));
         DevWidgetSetPropertyEx(o,"r.b.y",&(r.b.y));
-
 
         if ( Class ) if ( Class->Init ) Class->Init(o);
 
@@ -325,7 +323,6 @@ PiWidget ConvertToiWidget ( PDevWidget o ) {
                         a = a->Next;
                 } while ( a != b );
         }
-
 
         return iw;
 }

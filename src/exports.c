@@ -206,6 +206,7 @@ void RegisterExports()
         SYSEXPORT(ListFoundIndex);
         SYSEXPORT(ListKey);
         SYSEXPORT(ListKeyCase);
+        SYSEXPORT(NewListItem);
         SYSEXPORT(NewListItemEx);
         SYSEXPORT(ListOrderByData);
         SYSEXPORT(ListKeyCaseItem);

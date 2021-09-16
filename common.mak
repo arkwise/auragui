@@ -67,10 +67,10 @@ $(OBJ_DIR)/xapps/xbatch.o \
 $(OBJ_DIR)/xapps/orchid.o \
 $(OBJ_DIR)/xapps/mbox.o \
 $(OBJ_DIR)/xapps/login.o \
-$(OBJ_DIR)/xapps/convmpeg.o \
 $(OBJ_DIR)/xapps/myip.o \
 $(OBJ_DIR)/xapps/htmlget.o
 #$(OBJ_DIR)/xapps/ping.o \
+#$(OBJ_DIR)/xapps/convmpeg.o \
 
 
 
@@ -113,10 +113,10 @@ bin/xapps/illkirch.app \
 bin/xapps/orchid.app \
 bin/xapps/mbox.app \
 bin/xapps/login.app \
-bin/xapps/convmpeg.app \
 bin/xapps/myip.app \
 bin/xapps/htmlget.app
 #bin/xapps/ping.app \
+#bin/xapps/convmpeg.app \
 
 
 
