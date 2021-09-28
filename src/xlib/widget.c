@@ -303,9 +303,9 @@ void WidgetDrawFromBuffer(PWidget o, PList l, p_bitmap Out, p_bitmap Buffer, PPo
         if (d)
         {
             set_clip_rect(Out, max(0, o->DrawAbsolute.a.x + d->x),
-                      max(0, o->DrawAbsolute.a.y + d->y),
-                      min(Out->w - 1, o->DrawAbsolute.b.x + d->x),
-                      min(Out->h - 1, o->DrawAbsolute.b.y + d->y));
+                          max(0, o->DrawAbsolute.a.y + d->y),
+                          min(Out->w - 1, o->DrawAbsolute.b.x + d->x),
+                          min(Out->h - 1, o->DrawAbsolute.b.y + d->y));
 
             //blit(Buffer,screen,0,screen->h/2,0,0,screen->w, screen->h/2 );
             do
@@ -320,9 +320,9 @@ void WidgetDrawFromBuffer(PWidget o, PList l, p_bitmap Out, p_bitmap Buffer, PPo
         else
         {
             set_clip_rect(Out, max(0, o->DrawAbsolute.a.x),
-                      max(0, o->DrawAbsolute.a.y),
-                      min(Out->w - 1, o->DrawAbsolute.b.x),
-                      min(Out->h - 1, o->DrawAbsolute.b.y));
+                          max(0, o->DrawAbsolute.a.y),
+                          min(Out->w - 1, o->DrawAbsolute.b.x),
+                          min(Out->h - 1, o->DrawAbsolute.b.y));
             do
             {
                 PRect r = a->Data;
@@ -367,9 +367,9 @@ void WidgetRefresh(PWidget o, PRect w, PList List, p_bitmap Out, PPoint d)
             if (d)
             {
                 set_clip_rect(Out, max(0, o->DrawAbsolute.a.x + d->x),
-                          max(0, o->DrawAbsolute.a.y + d->y),
-                          min(Out->w - 1, o->DrawAbsolute.b.x + d->x),
-                          min(Out->h - 1, o->DrawAbsolute.b.y + d->y));
+                              max(0, o->DrawAbsolute.a.y + d->y),
+                              min(Out->w - 1, o->DrawAbsolute.b.x + d->x),
+                              min(Out->h - 1, o->DrawAbsolute.b.y + d->y));
                 do
                 {
                     PRect r = a->Data;
@@ -380,9 +380,9 @@ void WidgetRefresh(PWidget o, PRect w, PList List, p_bitmap Out, PPoint d)
             else
             {
                 set_clip_rect(Out, max(0, o->DrawAbsolute.a.x),
-                          max(0, o->DrawAbsolute.a.y),
-                          min(Out->w - 1, o->DrawAbsolute.b.x),
-                          min(Out->h - 1, o->DrawAbsolute.b.y));
+                              max(0, o->DrawAbsolute.a.y),
+                              min(Out->w - 1, o->DrawAbsolute.b.x),
+                              min(Out->h - 1, o->DrawAbsolute.b.y));
                 do
                 {
                     PRect r = a->Data;
@@ -405,9 +405,9 @@ void WidgetRefresh(PWidget o, PRect w, PList List, p_bitmap Out, PPoint d)
             acquire_bitmap(Out);
 
             set_clip_rect(Out, max(0, r->a.x),
-                      max(0, r->a.y),
-                      min(Out->w - 1, r->b.x),
-                      min(Out->h - 1, r->b.y));
+                          max(0, r->a.y),
+                          min(Out->w - 1, r->b.x),
+                          min(Out->h - 1, r->b.y));
             o->Draw(o, Out, r);
             if (OSD)
                 DrawOSDOnRect(Out, *r);
@@ -427,9 +427,9 @@ void WidgetRefresh(PWidget o, PRect w, PList List, p_bitmap Out, PPoint d)
             {
                 PRect r = a->Data;
                 set_clip_rect(Out, max(0, r->a.x),
-                          max(0, r->a.y),
-                          min(Out->w - 1, r->b.x),
-                          min(Out->h - 1, r->b.y));
+                              max(0, r->a.y),
+                              min(Out->w - 1, r->b.x),
+                              min(Out->h - 1, r->b.y));
                 o->Draw(o, Out, r);
                 if (OSD)
                     DrawOSDOnRect(Out, *r);
@@ -447,9 +447,9 @@ void WidgetRefresh(PWidget o, PRect w, PList List, p_bitmap Out, PPoint d)
             if (w)
                 RectIntersept(&Tmp, o->DrawAbsolute, *w);
             set_clip_rect(buffer, max(0, o->DrawAbsolute.a.x),
-                      max(0, o->DrawAbsolute.a.y),
-                      min(buffer->w - 1, o->DrawAbsolute.b.x),
-                      min(buffer->h - 1, o->DrawAbsolute.b.y));
+                          max(0, o->DrawAbsolute.a.y),
+                          min(buffer->w - 1, o->DrawAbsolute.b.x),
+                          min(buffer->h - 1, o->DrawAbsolute.b.y));
 
             o->Draw(o, buffer, &Tmp);
             acquire_bitmap(Out);

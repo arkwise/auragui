@@ -52,3 +52,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 SYSLOGD.TXT
+
+# vs code cache
+.vs
+.vscode

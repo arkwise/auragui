@@ -193,10 +193,261 @@ void LoadMsgColl(void)
                 ResetMsgInfo();
 }
 ////////////////////////////////////////////////////////////////////////////////
+void CreateForOneWidget(FILE *file, PWidget widget, BITMAP *bitmap)
+{
+        PRect widgetPos = &(widget->Relative);
+        l_text objName;
+
+        switch (widget->Class->Id)
+        {
+        // Window
+        case ULONG_ID('W', 'i', 'n', ' '):
+        {
+                fprintf(file, "\t//Window\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PWindow wnd = WINDOW(widget);
+                objName = wnd->o.Name;
+                fprintf(file, "\tPWindow %s = CreateWindow(&Me, r, \"%s\", %x);\n", objName, wnd->Caption, wnd->WindowFlags);
+                fprintf(file, "\tWIDGET(%s)->AppEvHdl = &AppEventHandler;\n", objName);
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        // Button
+        case ULONG_ID('B', 't', 'n', ' '):
+        {
+                fprintf(file, "\t//Button\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PButton btn = BUTTON(widget);
+                objName = btn->o.Name;
+                fprintf(file, "\tPButton %s = CreateButton(&Me, r, \"%s\", %2x);\n", objName, btn->Caption, btn->Message);
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        // Label
+        case ULONG_ID('L', 'b', 'l', ' '):
+        {
+                fprintf(file, "\t//Label\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PLabel lbl = LABEL(widget);
+                objName = lbl->o.Name;
+                fprintf(file, "\tPLabel %s = CreateLabel(&Me, r, \"%s\");\n", objName, lbl->Caption);
+                fprintf(file, "\tWIDGET(%s)->BackgroundColor = makecol(250, 250, 250);\n");
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        // Slider
+        case ULONG_ID('S', 'l', 'd', 'r'):
+        {
+                fprintf(file, "\t//Slider\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PSlider slider = SLIDER(widget);
+                objName = slider->o.Name;
+                fprintf(file, "\tPSlider %s = CreateSlider(&Me, r, 1);\n", objName);
+                // There is no ui interface to define notify function, so they will be placed as NULL
+                fprintf(file, "\t%s->Notify = NULL;\n", objName);
+                fprintf(file, "\n");
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        // TextBox
+        case ULONG_ID('T', 'x', 't', 'B'):
+        {
+                fprintf(file, "\t//Textbox\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PTextbox txtBox = TEXTBOX(widget);
+                objName = txtBox->o.o.Name;
+                // TextBox's propery flag can be multiple values;TBF_EDITABLE, TBF_MULTILINE, etc...
+                // But they are decided and converted to integer value in desginer UI, anyway
+                // So it needs to be considered
+                fprintf(file, "\tPTextBox %s = CreateTextBox(&Me, r, %x);\n", objName, txtBox->Flags);
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        // ListView
+        case ULONG_ID('L', 's', 't', 'V'):
+        {
+                fprintf(file, "\t//Listview\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PListview listview = LISTVIEW(widget);
+                objName = listview->o.o.Name;
+                fprintf(file, "\tPListview %s = CreateListview(&Me, r, \"%s\", %x);\n", objName, listview->Flags);
+                fprintf(file, "\t// Add Colums here. Use function ListviewAddColum\n\n");
+                fprintf(file, "\t// Should be defined manually.\n");
+                fprintf(file, "\t%s->OnValMsg = 0;\n\n", objName);
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        // CheckBox
+        case ULONG_ID('C', 'h', 'k', 'B'):
+        {
+                fprintf(file, "\t//Checkbox\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PCheckbox chkBox = CHECKBOX(widget);
+                objName = chkBox->o.Name;
+                fprintf(file, "\tPCheckbox %s = CreateCheckbox(&Me, r, \"%s\");\n", objName, chkBox->Caption);
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        // DirView
+        case ULONG_ID('D', 'r', 'V', 'w'):
+        {
+                fprintf(file, "\t//Dirview\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PDirview dirView = DIRVIEW(widget);
+                objName = dirView->o.o.o.Name;
+                fprintf(file, "\t// Argument 4 is type PList, it is used for specifying extensions,\n\t// can be defined for more work\n");
+                fprintf(file, "\tPDirview %s = CreateDirview(&Me, r, \"/\", NULL, DVF_NOPARICON | DVF_MULTISELECT);\n\n", objName);
+                fprintf(file, "\t//See listview.h for more options, this is just default one.\n");
+                fprintf(file, "\tLISTVIEW(%s)->Style = LVS_LIST;", objName);
+                fprintf(file, "\tWIDGET(%s)->Flags |= %x;\n", objName, dirView->Flags);
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        // DirTreeView
+        case ULONG_ID('D', 'T', 'r', 'V'):
+        {
+                fprintf(file, "\t//DirTreeView\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PTreeDirview treedirView = TREEDIRVIEW(widget);
+                objName = treedirView->o.o.o.Name;
+                fprintf(file, "\tPTreeDirview %s = CreateTreeDirview(&Me, r);\n", objName);
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        // TreeView
+        case ULONG_ID('T', 'r', 'e', 'V'):
+        {
+                fprintf(file, "\t//Treeview\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PTreeView treeView = TREEVIEW(widget);
+                objName = treeView->o.o.Name;
+                fprintf(file, "\tPTreeView %s = CreateTreeView(&Me, r);\n", objName);
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        // GroupBox
+        case ULONG_ID('G', 'r', 'p', 'B'):
+        {
+                fprintf(file, "\t//Groupbox\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PGroupbox groupBox = GROUPBOX(widget);
+                objName = groupBox->o.Name;
+                fprintf(file, "\tPGroupbox %s = CreateGroupbox(&Me, r, \"%s\");\n", objName, groupBox->Caption);
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        // Progress bar
+        case ULONG_ID('P', 'r', 'g', 's'):
+        {
+                fprintf(file, "\t//Progress bar\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PProgressBar progressBar = PROGRESSBAR(widget);
+                objName = progressBar->o.Name;
+                // max -> Steps, value -> Promile
+                fprintf(file, "\tPProgressBar %s = CreateProgressBar(&Me, r, %x);\n", objName, progressBar->Steps);
+                fprintf(file, "\t%s->Promile = %x;\n", objName, progressBar->Promile);
+                fprintf(file, "\tWIDGET(%s)->Flags = %x;\n", objName, progressBar->o.Flags);
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        // Menu
+        case ULONG_ID('M', 'e', 'n', 'u'):
+        {
+                fprintf(file, "\t//Menu\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                break;
+        }
+
+        // Vertical Spliter
+        case ULONG_ID('V', 'S', 'p', 'l'):
+        {
+                fprintf(file, "\t//Vertical Spliter\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PWidget vSpliter = widget;
+                objName = vSpliter->Name;
+                fprintf(file, "\tPWidget %s = CreateVSpliter(&Me, r);\n", objName);
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        // Horizontal Spliter
+        case ULONG_ID('H', 'S', 'p', 'l'):
+        {
+                fprintf(file, "\t//Horizontal Spliter\n");
+                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                PWidget hSpliter = widget;
+                objName = hSpliter->Name;
+                fprintf(file, "\tPWidget %s = CreateHSpliter(&Me, r);\n", objName);
+                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                fprintf(file, "\n");
+                break;
+        }
+
+        default:
+                break;
+        }
+}
+////////////////////////////////////////////////////////////////////////////////
+void CreateWidgetCode(FILE *file, PWidget widget)
+{
+        CreateForOneWidget(file, widget, screen);
+
+        if (widget->Last)
+        {
+                PWidget a = widget->Last;
+                PWidget b = a;
+                do
+                {
+                        CreateWidgetCode(file, a);
+                        a = a->Next;
+                } while (a != b);
+        }
+}
+////////////////////////////////////////////////////////////////////////////////
 void GenerateCode(l_text filepath)
 {
         PiWidget iwidget = ConvertToiWidget(RootDW);
         PWidget widget = ComplieiWidget(&Me, iwidget);
+        InsertWidget(DeskTop, widget);
 
         /* sample c file will be configured of following parts
         1. include
@@ -208,196 +459,64 @@ void GenerateCode(l_text filepath)
         FILE *codeFile = fopen(filepath, "w");
 
         /*
+         *  Include part
+         */
+        fprintf(codeFile, "#include \"kernel.h\"\n");
+        fprintf(codeFile, "#include \"window.h\"\n");
+        fprintf(codeFile, "#include \"menu.h\"\n");
+        fprintf(codeFile, "#include \"button.h\"\n");
+        fprintf(codeFile, "#include \"label.h\"\n");
+        fprintf(codeFile, "#include \"tbox.h\"\n");
+        fprintf(codeFile, "#include \"listview.h\"\n");
+        fprintf(codeFile, "#include \"iodlg.h\"\n");
+        fprintf(codeFile, "#include \"slider.h\"\n");
+        fprintf(codeFile, "#include \"checkbox.h\"\n");
+        fprintf(codeFile, "#include \"groupbox.h\"\n");
+        fprintf(codeFile, "#include \"grfx.h\"\n");
+        fprintf(codeFile, "#include \"progress.h\"\n");
+        fprintf(codeFile, "#include \"treeview.h\"\n");
+
+        /*
+         *  Golbal variables
+         */
+        fprintf(codeFile, "////////////////////////////////////////////////////////////////////////////////\n");
+        fprintf(codeFile, "l_ulong AppVersion = ULONG_ID(0, 1, 0, 0);\n");
+        /* main window's caption will be used as the name of created app */
+        fprintf(codeFile, "char AppName[] = \"%s\";\n", WINDOW(widget)->Caption);
+        fprintf(codeFile, "l_uid nUID = \"%s\";\n", WINDOW(widget)->Caption);
+        fprintf(codeFile, "l_uid NeededLibs[] = {\"widget\", \"window\", \"grfx\", \"button\", \"label\", \"textbox\", \"memfile\", \"listview\", \"iodlg\", \"slider\", \"checkbox\", \"groupbox\", \"progress\", \"treeview\"};\n");
+
+        fprintf(codeFile, "////////////////////////////////////////////////////////////////////////////////\n\n");
+
+        /*
+         *  Message Handler
+         */
+        fprintf(codeFile, "l_bool AppEventHandler(PWidget o, PEvent Event)\n{\n");
+        fprintf(codeFile, "\tif (Event->Type == EV_MESSAGE)\n\t{\n");
+
+        fprintf(codeFile, "\t\tswitch(Event->Message)\n\t\t{\n");
+        // main message hanlder
+
+        fprintf(codeFile, "\t\t}\n");
+
+        fprintf(codeFile, "\t}\n\treturn false;\n");
+        fprintf(codeFile, "}\n");
+
+        /*
          *  Main Function
          */
 
-        // function beginning and global variables
+        fprintf(codeFile, "// Main Function\n");
         fprintf(codeFile, "l_int Main(int argc, l_text *argv)\n{\n");
-        fprintf(codeFile, "\tPWindow w = NULL;\n");
-        fprintf(codeFile, "\tPButton b = NULL;\n");
-        fprintf(codeFile, "\n");
         fprintf(codeFile, "\tTRect r;\n\n");
 
-        // main window
-        PWindow mainWindow = WINDOW(widget);
-        PRect pos = WIDGET(mainWindow)->Absolute;
-        fprintf(codeFile, "\tRectAssign(&r, %d, %d, %d, %d);\n", pos->a.x, pos->a.y, pos->b.x, pos->b.y);
-        fprintf(codeFile, "\tw = CreateWindow(&Me, r, \"%s\", %d);\n", mainWindow->Caption, mainWindow->WindowFlags);
-        fprintf(codeFile, "\tWIDGET(w)->AppEvHdl = &AppEventHandler;\n");
-        fprintf(codeFile, "\tInsertWidget(WIDGET(DeskTop), WIDGET(w));\n");
-        fprintf(codeFile, "\tWidgetPreCenter(WIDGET(w));\n\n");
+        CreateWidgetCode(codeFile, widget);
 
-        if (widget->Last)
-        {
-                PWidget a = widget->Last;
-                PWidget b = a;
-
-                do
-                {
-                        PRect widgetPos = a->Relative;
-                        fprintf(codeFile, "/tRectAssign(&r, %d, %d, %d, %d);\n");
-                        
-                        l_text objName;
-
-                        switch (a->Class->Id)
-                        {
-                        // Window
-                        case ULONG_ID('W', 'i', 'n', ' '):
-                                //PWindow wnd = WINDOW(a);
-                                
-                                break;
-
-                        // Button
-                        case ULONG_ID('B', 't', 'n', ' '):
-                                PButton btn = BUTTON(a);
-                                l_text objName = btn->o.Name;
-                                fprintf(codeFile, "\tPButton %s = CreateButton(&Me, r, \"%s\", %ld);\n", objName, btn->Caption, btn->Message);
-                                fprintf(codeFile, "\tInsertWidget(WIDGET(w), WIDGET(%s));\n", objName);
-                                fprintf(codeFile, "\n");
-                                break;
-
-                        // Label
-                        case ULONG_ID('L', 'b', 'l', ' '):
-                                PLabel lbl = LABEL(a);
-                                l_text objName = lbl->o.Name;
-                                fprintf(codeFile, "\tPLabel %s = CreateLabel(&Me, r, \"%s\");\n", objName, lbl->Caption);
-                                fprintf(codeFile, "\tWIDGET(%s)->BackgroundColor = makecol(250, 250, 250);\n");
-                                fprintf(codeFile, "\tInsertWidget(WIDGET(w), WIDGET(%s));\n", objName);
-                                fprintf(codeFile, "\n");
-                                break;
-
-                        // Slider
-                        case ULONG_ID('S', 'l', 'd', 'r'):
-                                PSlider slider = SLIDER(a);
-                                l_text objName = slider->o.Name;
-                                fprintf(codeFile, "\tPSlider %s = CreateSlider(&Me, r, 1);\n", objName);
-                                fprintf(codeFile, "\tInsertWidget(WIDGET(w), WIDGET(%s));\n\n", objName);
-                                // There is no ui interface to define notify function, so they will be placed as NULL
-                                fprintf(codeFile, "\t%s->Notify = NULL;\n");
-                                fprintf(codeFile, "\n");
-                                break;
-
-                        // TextBox
-                        case ULONG_ID('T', 'x', 't', 'B'):
-                                PTextbox txtBox = TEXTBOX(a);
-                                l_text objName = txtBox->o.o.Name;
-                                // TextBox's propery flag can be multiple values;TBF_EDITABLE, TBF_MULTILINE, etc...
-                                // But they are decided and converted to integer value in desginer UI, anyway
-                                // So it needs to be considered
-                                fprintf(codeFile, "\tPTextBox %s = CreateTextBox(&Me, r, %ld);\n", objName, txtBox->Flags);
-                                fprintf(codeFile, "\tInsertWidget(WIDGET(w), WIDGET(%s));\n", objName);
-                                fprintf(codeFile, "\n");
-                                break;
-
-                        // ListView
-                        case ULONG_ID('L', 's', 't', 'V'):
-                                PListview listview = LISTVIEW(a);
-                                l_text objName = listview->o.o.Name;
-                                fprintf(codeFile, "\tPListview %s = CreateListview(&Me, r, \"%s\", %ld);\n", objName, listview->Flags);
-                                fprintf(codeFile, "\t// Add Colums here. Use function ListviewAddColum\n\n");
-                                fprintf(codeFile, "\t// Should be defined manually.\n");
-                                fprintf(codeFile, "\t%s->OnValMsg = 0;\n\n");
-                                fprintf(codeFile, "\tInsertWidget(WIDGET(w), WIDGET(%s));\n", objName);
-                                fprintf(codeFile, "\n");
-                                break;
-
-                        // CheckBox
-                        case ULONG_ID('C', 'h', 'k', 'B'):
-                                PCheckbox chkBox = CHECKBOX(a);
-                                l_text objName = chkBox->o.Name;
-                                fprintf(codeFile, "\tPCheckbox %s = CreateCheckbox(&Me, r, \"%s\");\n", objName, chkBox->Caption);
-                                fprintf(codeFile, "\tInsertWidget(WIDGET(w), WIDGET(%s));\n", objName);
-                                fprintf(codeFile, "\n");
-                                break;
-
-                        // DirView
-                        case ULONG_ID('D', 'r', 'V', 'w'):
-                                PDirview dirView = DIRVIEW(a);
-                                l_text objName = dirView->o.o.o.Name;
-                                fprintf(codeFile, "\t// Argument 4 is type PList, it is used for specifying extensions,\n\t// can be defined for more work\n")
-                                fprintf(codeFile, "\tPDirview %s = CreateDirview(&Me, r, \"/\", NULL, DVF_NOPARICON | DVF_MULTISELECT);\n\n", objName);
-                                fprintf(codeFile, "\t//See listview.h for more options, this is just default one.\n")
-                                fprintf(codeFile, "\tLISTVIEW(%s)->Style = LVS_LIST;", objName);
-                                fprintf(codeFile, "\tWIDGET(%s)->Flags |= %ld;\n", objName, dirView->Flags);
-                                fprintf(codeFile, "\tInsertWidget(WIDGET(w), WIDGET(%s));\n", objName);
-                                fprintf(codeFile, "\n");
-                                break;
-
-                        // DirTreeView
-                        case ULONG_ID('D', 'T', 'r', 'V'):
-                                PTreeDirview treedirView = TREEDIRVIEW(a);
-                                l_text objName = treedirView->o.o.o.Name;
-                                fprintf(codeFile, "\tPTreeDirview %s = CreateTreeDirview(&Me, r);\n", objName);
-                                fprintf(codeFile, "\tInsertWidget(WIDGET(w), WIDGET(%s));\n", objName);
-                                fprintf(codeFile, "\n");
-                                break;
-
-                        // TreeView
-                        case ULONG_ID('T', 'r', 'e', 'V'):
-                                PTreeView treeView = TREEVIEW(a);
-                                l_text objName = treeView->o.o.Name;
-                                fprintf(codeFile, "\tPTreeView %s = CreateTreeView(&Me, r);\n", objName);
-                                fprintf(codeFile, "\tInsertWidget(WIDGET(w), WIDGET(%s));\n", objName);
-                                fprintf(codeFile, "\n");
-                                break;
-
-                        // GroupBox
-                        case ULONG_ID('G', 'r', 'p', 'B'):
-                                PGroupbox groupBox = GROUPBOX(a);
-                                l_text objName = groupBox->o.Name;
-                                fprintf(codeFile, "\tPGroupbox %s = CreateGroupbox(&Me, r, \"%s\");\n", objName, groupBox->Caption);
-                                fprintf(codeFile, "\tInsertWidget(WIDGET(w), WIDGET(%s));\n", objName);
-                                fprintf(codeFile, "\n");
-                                break;
-
-                        // Progress bar
-                        case ULONG_ID('P', 'r', 'g', 's'):
-                                PProgressBar progressBar = PROGRESSBAR(a);
-                                l_text objName = progressBar->o.Name;
-                                // max -> Steps, value -> Promile
-                                fprintf(codeFile, "\tPProgressBar %s = CreateProgressBar(&Me, r, %ld);\n", objName, progressBar->Steps);
-                                fprintf(codeFile, "\t%s->Promile = %ld;\n", objName, progressBar->Promile);
-                                fprintf(codeFile, "\tWIDGET(%s)->Flags = %ld;\n", objName, progressBar->o.Flags);
-                                fprintf(codeFile, "\tInsertWidget(WIDGET(w), WIDGET(%s));\n", objName);
-                                fprintf(codeFile, "\n");
-                                break;
-
-                        // Menu
-                        case ULONG_ID('M', 'e', 'n', 'u'):
-                                break;
-
-                        // Vertical Spliter
-                        case ULONG_ID('V', 'S', 'p', 'l'):
-                                PWidget vSpliter = a;
-                                l_text objName = vSpliter->Name;
-                                fprintf(codeFile, "\tPWidget %s = CreateVSpliter(&Me, r);\n", objName);
-                                fprintf(codeFile, "\tInsertWidget(WIDGET(w), WIDGET(%s));\n", objName);
-                                fprintf(codeFile, "\n");
-                                break;
-
-                        // Horizontal Spliter
-                        case ULONG_ID('H', 'S', 'p', 'l'):
-                                PWidget hSpliter = a;
-                                l_text objName = hSpliter->Name;
-                                fprintf(codeFile, "\tPWidget %s = CreateHSpliter(&Me, r);\n", objName);
-                                fprintf(codeFile, "\tInsertWidget(WIDGET(w), WIDGET(%s));\n", objName);
-                                fprintf(codeFile, "\n");
-                                break;
-
-                        default:
-                                break;
-                        }
-
-                        a = a->Next;
-                } while (a != b);
-        }
-
-        fprintf(codeFile, "\tWidgetDrawAll(WIDGET(w));\n\treturn true;\n");
-        fprintf(codeFile, "}\n\n");
+        fprintf(codeFile, "}\n");
 
         /*
-     *  Close Function
-     */
+         *  Close Function
+         */
         fprintf(codeFile, "void Close(void)\n{\n\n}\n");
 
         fclose(codeFile);
