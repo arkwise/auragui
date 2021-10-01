@@ -22,6 +22,7 @@
 #include "slider.h"
 #include "checkbox.h"
 #include "groupbox.h"
+#include "widget.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -487,6 +488,39 @@ void GenerateCode(l_text filepath)
         fprintf(codeFile, "l_uid NeededLibs[] = {\"widget\", \"window\", \"grfx\", \"button\", \"label\", \"textbox\", \"memfile\", \"listview\", \"iodlg\", \"slider\", \"checkbox\", \"groupbox\", \"progress\", \"treeview\"};\n");
 
         fprintf(codeFile, "////////////////////////////////////////////////////////////////////////////////\n\n");
+
+        /*
+         * Message Macro Define
+         */
+        if (MsgColl)
+                if (MsgColl->Last)
+                {
+                        PListItem a, b;
+                        a = b = MsgColl->Last->Next;
+                        do
+                        {
+                                PListviewItem n;
+                                l_text Message;
+                                l_text Description = MSGINFO(a->Data)->Description;
+
+                                Message = TextArgs("%x", MSGINFO(a->Data)->Value);
+                                fprintf(codeFile, "#define %s 0x%s                    ", MSGINFO(a->Data)->Name, Message);
+                                if (TextLen(Description))
+                                {
+                                        fprintf(codeFile, "// %s\n", Description);
+                                }
+                                else
+                                {
+                                        fprintf(codeFile, "\n");
+                                }
+
+                                free(Message);
+
+                                a = a->Next;
+                        } while (a != b);
+
+                        fprintf(codeFile, "\n\n");
+                }
 
         /*
          *  Message Handler

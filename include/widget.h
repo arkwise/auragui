@@ -30,11 +30,11 @@
 #define MBI_HARDWARE		0xFFFF9552
 #define MBI_SYSERROR		0xFFFF9554
 
-p_bitmap IconHardware	= 0;
-p_bitmap IconWelcome	= 0;
-p_bitmap IconSYSError	= 0;
+// p_bitmap IconHardware	= 0;
+// p_bitmap IconWelcome	= 0;
+// p_bitmap IconSYSError	= 0;
 l_ulong Flags;
-p_bitmap Icon	= 0;
+// p_bitmap Icon	= 0;
 TRect r;
 
 
