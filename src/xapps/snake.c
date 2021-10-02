@@ -528,27 +528,27 @@ l_int Main ( int argc, l_text *argv )
 
 
 	PMenu Menu = NewMenu(
-     NewMenuItem( "File", NULL, NULL, NULL,
+     NewMenuItem( "File", NULL, 0, 0,
      		 NewMenu (
-     		 		NewMenuItem( "New game", NULL, MSG_NEWGAME, NULL, NULL,
+     		 		NewMenuItem( "New game", NULL, MSG_NEWGAME, 0, NULL,
      		 		NewMenuItemSeparator(
-     		 		NewMenuItem( "Exit", NULL, WM_CLOSE, NULL, NULL,
+     		 		NewMenuItem( "Exit", NULL, WM_CLOSE, 0, NULL,
      		 		NULL)))
      		 ),
-     NewMenuItem( "Speed", NULL, NULL, NULL,
+     NewMenuItem( "Speed", NULL, 0, 0,
 				NewMenu (
-     		 		NewMenuItem( "Slowest", NULL, MSG_SPEED1, NULL, NULL,
-     		 		NewMenuItem( "Very slow", NULL, MSG_SPEED2, NULL, NULL,
-     		 		NewMenuItem( "Slow", NULL, MSG_SPEED3, NULL, NULL,
-     		 		NewMenuItem( "Normal", NULL, MSG_SPEED4, NULL, NULL,
-     		 		NewMenuItem( "Fast", NULL, MSG_SPEED5, NULL, NULL,
-     		 		NewMenuItem( "Very fast", NULL, MSG_SPEED6, NULL, NULL,
-     		 		NewMenuItem( "Fastest", NULL, MSG_SPEED7, NULL, NULL,
+     		 		NewMenuItem( "Slowest", NULL, MSG_SPEED1, 0, NULL,
+     		 		NewMenuItem( "Very slow", NULL, MSG_SPEED2, 0, NULL,
+     		 		NewMenuItem( "Slow", NULL, MSG_SPEED3, 0, NULL,
+     		 		NewMenuItem( "Normal", NULL, MSG_SPEED4, 0, NULL,
+     		 		NewMenuItem( "Fast", NULL, MSG_SPEED5, 0, NULL,
+     		 		NewMenuItem( "Very fast", NULL, MSG_SPEED6, 0, NULL,
+     		 		NewMenuItem( "Fastest", NULL, MSG_SPEED7, 0, NULL,
      		 		NULL)))))))
      		 ),
-     NewMenuItem( "Help", NULL, NULL, NULL,
+     NewMenuItem( "Help", NULL, 0, 0,
      	NewMenu(
-     		NewMenuItem( "About", NULL, WM_ABOUT, NULL, NULL, NULL)),
+     		NewMenuItem( "About", NULL, WM_ABOUT, 0, NULL, NULL)),
      NULL)))
 	);
 

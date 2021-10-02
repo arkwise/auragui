@@ -410,20 +410,20 @@ l_int Main ( int argc, l_text *argv )
 
 
 	PMenu Menu = NewMenu(
-     NewMenuItem( "Game", NULL, NULL, NULL,
+     NewMenuItem( "Game", NULL, 0, 0,
      		 NewMenu (
-     		 		NewMenuItem( "New game", NULL, MSG_NEWGAME, NULL, NULL,
+     		 		NewMenuItem( "New game", NULL, MSG_NEWGAME, 0, NULL,
      		 		NewMenuItemSeparator(
-     		 		NewMenuItem( "Easy", NULL, MSG_EASY, NULL, NULL,
-     		 		NewMenuItem( "Medium", NULL, MSG_MEDIUM, NULL, NULL,
-     		 		NewMenuItem( "Hard", NULL, MSG_HARD, NULL, NULL,
+     		 		NewMenuItem( "Easy", NULL, MSG_EASY, 0, NULL,
+     		 		NewMenuItem( "Medium", NULL, MSG_MEDIUM, 0, NULL,
+     		 		NewMenuItem( "Hard", NULL, MSG_HARD, 0, NULL,
      		 		NewMenuItemSeparator(
-     		 		NewMenuItem( "Exit", NULL, WM_CLOSE, NULL, NULL,
+     		 		NewMenuItem( "Exit", NULL, WM_CLOSE, 0, NULL,
      		 		NULL)))))))
      		 ),
-     NewMenuItem( "Help", NULL, NULL, NULL,
+     NewMenuItem( "Help", NULL, 0, 0,
      	NewMenu(
-     		NewMenuItem( "About", NULL, WM_ABOUT, NULL, NULL, NULL)),
+     		NewMenuItem( "About", NULL, WM_ABOUT, 0, NULL, NULL)),
      NULL))
 	);
 
