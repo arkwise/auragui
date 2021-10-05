@@ -22,7 +22,6 @@
 #include "slider.h"
 #include "checkbox.h"
 #include "groupbox.h"
-#include "widget.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -77,6 +76,9 @@ PWindow w;
 l_text OpenedFile = 0;
 PFileTypes Filter = 0;
 PFileTypes FilterRes = 0;
+
+void CreateMenuCode(FILE *file, PMenu userMenu);
+
 ////////////////////////////////////////////////////////////////////////////////
 void CloseCurrent(void)
 {
@@ -194,6 +196,42 @@ void LoadMsgColl(void)
                 ResetMsgInfo();
 }
 ////////////////////////////////////////////////////////////////////////////////
+void CreateMenuItemCode(FILE *file, PMenuItem item)
+{
+        fprintf(file, "\n\t\t\tNewMenuItem(\"%s\", NULL, %s, 0, ", item->Caption, GetMessageName(item->Message));
+        if (item->SubMenu)
+        {
+                CreateMenuCode(file, item->SubMenu);
+                fprintf(file, ", ");
+        }
+        else
+                fprintf(file, "NULL, ");
+
+        if (item->Next)
+        {
+                CreateMenuItemCode(file, item->Next);
+                fprintf(file, ")");
+        }
+        else
+                fprintf(file, "NULL)");
+}
+////////////////////////////////////////////////////////////////////////////////
+void CreateMenuCode(FILE *file, PMenu userMenu)
+{
+        if (!userMenu)
+                return;
+        
+        PMenuItem item = userMenu->Items;
+
+        if (item)
+        {
+                fprintf(file, "\n\t\tNewMenu(");
+                CreateMenuItemCode(file, item);
+
+                fprintf(file, ")");
+        }
+}
+////////////////////////////////////////////////////////////////////////////////
 void CreateForOneWidget(FILE *file, PWidget widget, BITMAP *bitmap)
 {
         PRect widgetPos = &(widget->Relative);
@@ -208,11 +246,40 @@ void CreateForOneWidget(FILE *file, PWidget widget, BITMAP *bitmap)
                 fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
                 PWindow wnd = WINDOW(widget);
                 objName = wnd->o.Name;
-                fprintf(file, "\tPWindow %s = CreateWindow(&Me, r, \"%s\", %x);\n", objName, wnd->Caption, wnd->WindowFlags);
+                fprintf(file, "\tPWindow %s = CreateWindow(&Me, r, \"%s\", WF_CAPTION|WF_FRAME|WF_MINIMIZE|WF_CENTERED);\n", 
+                                                                                objName, wnd->Caption ? wnd->Caption : "illkirch Dialog");
                 fprintf(file, "\tWIDGET(%s)->AppEvHdl = &AppEventHandler;\n", objName);
                 l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
                 fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
                 fprintf(file, "\n");
+                break;
+        }
+
+        // Menu
+        case ULONG_ID('M', 'e', 'n', 'u'):
+        {
+                fprintf(file, "\t//Menu\n");
+                PMenuView menuView = MENUVIEW(widget);
+                objName = menuView->o.Name;
+                l_text menuName = TextArgs("%s_menu", objName);
+
+                if (menuView->Menu)
+                {
+                        fprintf(file, "\tPMenu %s = ", menuName);
+                        CreateMenuCode(file, menuView->Menu);
+                        fprintf(file, ";\n");
+
+                        fprintf(file, "\n\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
+                        fprintf(file, "\tPMenuView %s = NewMenuView(&Me, r, %s, MenuViewStyleHorizontal, 0);\n", objName, menuName);
+                        fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", widget->Parent->Name, objName);
+                        fprintf(file, "\n");
+                }
+                else
+                {
+                        fprintf(file, "// No menu is defined, create at least one menu");
+                }
+
+                free(menuName);
                 break;
         }
 
@@ -223,10 +290,20 @@ void CreateForOneWidget(FILE *file, PWidget widget, BITMAP *bitmap)
                 fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
                 PButton btn = BUTTON(widget);
                 objName = btn->o.Name;
-                fprintf(file, "\tPButton %s = CreateButton(&Me, r, \"%s\", %2x);\n", objName, btn->Caption, btn->Message);
-                l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
-                fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
-                fprintf(file, "\n");
+
+                DebugMessage("%f", btn->Flags);
+
+                l_text messageName = GetMessageName(btn->Message);
+
+                if (messageName)
+                {
+                        fprintf(file, "\tPButton %s = CreateButton(&Me, r, \"%s\", %s);\n", objName, btn->Caption, messageName);
+                        l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
+                        fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
+                        fprintf(file, "\n");
+                        free(messageName);
+                }
+
                 break;
         }
 
@@ -269,13 +346,28 @@ void CreateForOneWidget(FILE *file, PWidget widget, BITMAP *bitmap)
                 fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
                 PTextbox txtBox = TEXTBOX(widget);
                 objName = txtBox->o.o.Name;
-                // TextBox's propery flag can be multiple values;TBF_EDITABLE, TBF_MULTILINE, etc...
-                // But they are decided and converted to integer value in desginer UI, anyway
-                // So it needs to be considered
-                fprintf(file, "\tPTextBox %s = CreateTextBox(&Me, r, %x);\n", objName, txtBox->Flags);
+
+                l_text txtBoxFlag = TextArgs("TBF_EDITABLE");
+
+                l_bool canEdit = txtBox->Flags & TBF_EDITABLE ? true : false;
+                l_bool canMLine = txtBox->Flags & TBF_MULTILINE ? true : false;
+
+                if (!canEdit && canMLine)
+                {
+                        txtBoxFlag = TextArgs("TBF_MULTILINE");
+                }
+
+                if (canEdit && canMLine)
+                {
+                        txtBoxFlag = TextArgs("TBF_EDITABLE | TBF_MULTILINE");
+                }
+
+                fprintf(file, "\tPTextBox %s = CreateTextBox(&Me, r, %s);\n", objName, txtBoxFlag);
                 l_text parentWidgetName = widget->Parent == Desktop ? "DeskTop" : widget->Parent->Name;
                 fprintf(file, "\tInsertWidget(WIDGET(%s), WIDGET(%s));\n", parentWidgetName, objName);
                 fprintf(file, "\n");
+
+                free(txtBoxFlag);
                 break;
         }
 
@@ -286,7 +378,7 @@ void CreateForOneWidget(FILE *file, PWidget widget, BITMAP *bitmap)
                 fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
                 PListview listview = LISTVIEW(widget);
                 objName = listview->o.o.Name;
-                fprintf(file, "\tPListview %s = CreateListview(&Me, r, \"%s\", %x);\n", objName, listview->Flags);
+                fprintf(file, "\tPListview %s = CreateListview(&Me, r, NULL, LVS_LIST, LVF_COLUMS | LVF_COLRESIZE);\n", objName);
                 fprintf(file, "\t// Add Colums here. Use function ListviewAddColum\n\n");
                 fprintf(file, "\t// Should be defined manually.\n");
                 fprintf(file, "\t%s->OnValMsg = 0;\n\n", objName);
@@ -387,14 +479,6 @@ void CreateForOneWidget(FILE *file, PWidget widget, BITMAP *bitmap)
                 break;
         }
 
-        // Menu
-        case ULONG_ID('M', 'e', 'n', 'u'):
-        {
-                fprintf(file, "\t//Menu\n");
-                fprintf(file, "\tRectAssign(&r, %d, %d, %d, %d);\n", widgetPos->a.x, widgetPos->a.y, widgetPos->b.y, widgetPos->b.y);
-                break;
-        }
-
         // Vertical Spliter
         case ULONG_ID('V', 'S', 'p', 'l'):
         {
@@ -476,11 +560,13 @@ void GenerateCode(l_text filepath)
         fprintf(codeFile, "#include \"grfx.h\"\n");
         fprintf(codeFile, "#include \"progress.h\"\n");
         fprintf(codeFile, "#include \"treeview.h\"\n");
+        fprintf(codeFile, "#include \"widget.h\"\n");
+        fprintf(codeFile, "#include \"events.h\"\n");
 
         /*
          *  Golbal variables
          */
-        fprintf(codeFile, "////////////////////////////////////////////////////////////////////////////////\n");
+        fprintf(codeFile, "\n////////////////////////////////////////////////////////////////////////////////\n");
         fprintf(codeFile, "l_ulong AppVersion = ULONG_ID(0, 1, 0, 0);\n");
         /* main window's caption will be used as the name of created app */
         fprintf(codeFile, "char AppName[] = \"%s\";\n", WINDOW(widget)->Caption);
@@ -528,13 +614,13 @@ void GenerateCode(l_text filepath)
         fprintf(codeFile, "l_bool AppEventHandler(PWidget o, PEvent Event)\n{\n");
         fprintf(codeFile, "\tif (Event->Type == EV_MESSAGE)\n\t{\n");
 
-        fprintf(codeFile, "\t\tswitch(Event->Message)\n\t\t{\n");
+        fprintf(codeFile, "\t\tswitch(Event->Message)\n\t\t{\n\n");
         // main message hanlder
 
         fprintf(codeFile, "\t\t}\n");
 
         fprintf(codeFile, "\t}\n\treturn false;\n");
-        fprintf(codeFile, "}\n");
+        fprintf(codeFile, "}\n\n");
 
         /*
          *  Main Function
@@ -546,7 +632,7 @@ void GenerateCode(l_text filepath)
 
         CreateWidgetCode(codeFile, widget);
 
-        fprintf(codeFile, "}\n");
+        fprintf(codeFile, "}\n\n");
 
         /*
          *  Close Function

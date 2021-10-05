@@ -15,12 +15,11 @@
 	Widget system header file.
 	Declarations and structures for widget system.
 */
+#ifndef _WIDGET_H_INCLUDED_
+#define _WIDGET_H_INCLUDED_
 
 #include "metrics.h"
 #include "dynld.h"
-
-#ifndef _WIDGET_H_INCLUDED_
-#define _WIDGET_H_INCLUDED_
 
 /*
 *	Alert messages
@@ -29,11 +28,6 @@
 #define MBI_HARDWARE 0xFFFF9552
 #define MBI_SYSERROR 0xFFFF9554
 
-// p_bitmap IconHardware	= 0;
-// p_bitmap IconWelcome	= 0;
-// p_bitmap IconSYSError	= 0;
-// l_ulong Flags;
-// p_bitmap Icon	= 0;
 TRect r;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -389,6 +383,8 @@ void WClassResgisterFlag(PWidgetClass c, l_text Property, l_ulong Value, l_text 
 #define PTYPE_MESSAGE 4
 #define PTYPE_FLAGS 5
 #define PTYPE_MENU 6
+#define PTYPE_MESSAGENAME 7
+#define PTYPE_FLAGSNAMELIST 8
 
 ////////////////////////////////////////////////////////////////////////////////
 // iWidget

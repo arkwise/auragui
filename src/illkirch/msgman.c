@@ -394,7 +394,6 @@ l_ulong MsgSelect(l_ulong Message)
 
         do
         {
-
                 Msg = WidgetExecute(WIDGET(w));
 
         } while ((Msg != WM_CLOSE) && (Msg != MSG_OK));

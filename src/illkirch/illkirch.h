@@ -163,5 +163,5 @@ l_ulong MsgSelect ( l_ulong Message );
 PBinData MsgInfoGenerateStore ( void );
 void MsgInfoInitFromStore ( PBinData o );
 void ResetMsgInfo ( void );
-
+l_text GetMessageName(l_ulong messageValue);
 #endif

@@ -287,10 +287,10 @@ l_int Main ( int argc, l_text *argv )
     NewMenuItemEx("Media",NULL,0,0,NULL,&GenerateSubMenu,"SYSTEM/MENU/media",
     NewMenuItemEx("Office",NULL,0,0,NULL,&GenerateSubMenu,"SYSTEM/MENU/tools",
     NewMenuItemEx("Extra",NULL,0,0,NULL,&GenerateSubMenu,"SYSTEM/MENU/extra",
-    NewMenuItem( "DosLynx", NULL, IDM_doslynx, NULL, NULL,
-    NewMenuItem( "Dillo v2", NULL, IDM_dillo, NULL, NULL,
-    NewMenuItem( "FTP Server", NULL, IDM_ftp, NULL, NULL,
-    NewMenuItem( "Navigate", NULL, IDM_NAV, NULL, NULL, NULL))))))))
+    NewMenuItem( "DosLynx", NULL, IDM_doslynx, 0, NULL,
+    NewMenuItem( "Dillo v2", NULL, IDM_dillo, 0, NULL,
+    NewMenuItem( "FTP Server", NULL, IDM_ftp, 0, NULL,
+    NewMenuItem( "Navigate", NULL, IDM_NAV, 0, NULL, NULL))))))))
     );
 
 	Menu3 = NewMenu(

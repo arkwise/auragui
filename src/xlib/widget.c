@@ -36,6 +36,12 @@ PWidget MasterWidget = NULL;
 PWidget FocusedWidget = NULL;
 PWidget *LookFor = NULL;
 
+p_bitmap IconHardware = NULL;
+p_bitmap IconWelcome = NULL;
+p_bitmap IconSYSError = NULL;
+p_bitmap Icon = NULL;
+l_ulong Flags = 0;
+
 ////////////////////////////////////////////////////////////////////////////////
 // Common parameters
 p_bitmap buffer = NULL;
