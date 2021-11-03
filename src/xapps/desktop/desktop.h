@@ -85,6 +85,9 @@ extern l_color PanelColor;
 #define BTN_APP		0xFFFF0003
 #define BTN_USR		0xFFFF0004
 #define BTN_navbtn		0xFFFF0005
+#define BTN_Ok 0xFFFF0006
+#define BTN_Ok2 0xFFFF0007
+#define BTN_Exit 0xFFFF0010
 
 #define IDM_QUIT		0xF00F0001
 #define IDM_PROGRAMS	0xF00F0002
@@ -92,7 +95,8 @@ extern l_color PanelColor;
 #define IDM_ABOUT		0xF00F0004
 #define DM_PROPERTIES	0xF00F0008
 #define IDM_NAV		0xF00F0007
-
+#define IDM_Exit 0xF00F0010
+#define IDM_GONNAMIN 0xF00F0444
 
 /**
 *	Wallpaper draw styles

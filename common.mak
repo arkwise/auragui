@@ -31,6 +31,7 @@ $(OBJ_DIR)/dynld.o
 
 APPOBJ = \
 $(OBJ_DIR)/xapps/desktop.o \
+$(OBJ_DIR)/xapps/ozone.o \
 $(OBJ_DIR)/xapps/nav.o \
 $(OBJ_DIR)/xapps/calc.o \
 $(OBJ_DIR)/xapps/snote.o \
@@ -76,6 +77,7 @@ $(OBJ_DIR)/xapps/htmlget.o
 
 APPLD = \
 bin/xapps/desktop.app \
+bin/xapps/ozone.app \
 bin/xapps/nav.app \
 bin/xapps/calc.app \
 bin/xapps/snote.app \

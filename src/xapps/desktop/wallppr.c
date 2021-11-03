@@ -36,7 +36,7 @@ void WDraw ( PWidget o, p_bitmap buffer, PRect w )
 			*/
 			draw_sprite_tile (WllBmp, buffer, 0, 0, GSScreenWidth, GSScreenHeight);
      textout_right_ex(buffer, default_font, "Aura M5", GSScreenWidth-5, GSScreenHeight-34, makecol(255, 255, 255), -1);
-     textout_right_ex(buffer, default_font, "Build: 3000 - 2021", GSScreenWidth-5, GSScreenHeight-17, makecol(255, 255, 255), -1);
+     textout_right_ex(buffer, default_font, "Build: 3000 - 26/9/2021", GSScreenWidth-5, GSScreenHeight-17, makecol(255, 255, 255), -1);
 
 		}
 		else if ( Style == 2 )
@@ -47,7 +47,7 @@ void WDraw ( PWidget o, p_bitmap buffer, PRect w )
 
 			stretch_blit (WllBmp, buffer, 0, 0, WllBmp->w, WllBmp->h, 0, 0, GSScreenWidth, GSScreenHeight);
      textout_right_ex(buffer, default_font, "Aura M5", GSScreenWidth-5, GSScreenHeight-34, makecol(255, 255, 255), -1);
-     textout_right_ex(buffer, default_font, "Build: 3000 - 2021", GSScreenWidth-5, GSScreenHeight-17, makecol(255, 255, 255), -1);
+     textout_right_ex(buffer, default_font, "Build: 3000 - 26/9/2021", GSScreenWidth-5, GSScreenHeight-17, makecol(255, 255, 255), -1);
 
 		}
 		else
@@ -57,7 +57,7 @@ void WDraw ( PWidget o, p_bitmap buffer, PRect w )
 			*/
 			blit (WllBmp , buffer, 0,0, (GSScreenWidth-WllBmp->w  )/2 , (GSScreenHeight -WllBmp->h  )/2, GSScreenWidth, GSScreenHeight );
      textout_right_ex(buffer, default_font, "Aura M5", GSScreenWidth-5, GSScreenHeight-34, makecol(255, 255, 255), -1);
-     textout_right_ex(buffer, default_font, "Build: 3000 - 2021", GSScreenWidth-5, GSScreenHeight-17, makecol(255, 255, 255), -1);
+     textout_right_ex(buffer, default_font, "Build: 3000 - 26/9/2021", GSScreenWidth-5, GSScreenHeight-17, makecol(255, 255, 255), -1);
 
 		}
 
@@ -78,7 +78,7 @@ l_bool WEventHandler ( PWidget o, PEvent Event )
 	{
 		if (Event->Message == WEvMouseRUp)
 		{
-			PMenu DeskMenu = NewMenu(NewMenuItem("Properties", NULL, DM_PROPERTIES, NULL, NULL, NULL));
+			PMenu DeskMenu = NewMenu(NewMenuItem("Properties", NULL, DM_PROPERTIES, 0, NULL, NULL));
 
 			PopUpMenu(&Me, Mouse->State.p, DeskMenu, WIDGET(DeskTop), 0);
 
