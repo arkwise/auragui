@@ -951,6 +951,17 @@ void RegisterLibC()
 #include <sys/exceptn.h>
 #include <tcp.h>
 #include <arpa/inet.h>
+#include <JUDAS.H>
+
+extern unsigned short timer_frequency;
+extern unsigned short timer_systemcount;
+extern unsigned short timer_ds;
+extern int timer_code_lock_start;
+extern int timer_code_lock_end;
+extern void (*timer_function)();
+extern __dpmi_paddr timer_oldvect;
+extern void timer_handler(void);
+extern volatile unsigned timer_count;
 
 int ____registered = 0;
 
@@ -1629,7 +1640,49 @@ void RegisterLibC()
         SYSEXPORT(mpeg2_parse);
         SYSEXPORT(mpeg2_buffer);
         SYSEXPORT(mpeg2_info);
-        SYSEXPORT(mpeg2_close);
+        SYSEXPORT(mpeg2_close);\
+
+        /* for mbox music play using judas library */
+        SYSEXPORT(judas_memunlock);
+        SYSEXPORT(judas_memlock);
+
+        SYSEXPORT(timer_code_lock_end);
+        SYSEXPORT(timer_systemcount);
+        SYSEXPORT(timer_frequency);
+        SYSEXPORT(timer_function);
+        SYSEXPORT(timer_oldvect);
+        SYSEXPORT(timer_handler);
+        SYSEXPORT(timer_count);
+        SYSEXPORT(timer_code_lock_start);
+        SYSEXPORT(timer_ds);
+        SYSEXPORT(judas_errortext);
+        SYSEXPORT(judas_uninit);
+        SYSEXPORT(judas_init);
+        SYSEXPORT(judas_device);
+        SYSEXPORT(judas_setmusicmastervolume);
+        SYSEXPORT(judas_error);
+        SYSEXPORT(judas_config);
+        SYSEXPORT(judas_loadxm);
+        SYSEXPORT(judas_loadmod);
+        SYSEXPORT(judas_loads3m);
+        SYSEXPORT(judas_playxm);
+        SYSEXPORT(judas_playmod);
+        SYSEXPORT(judas_plays3m);
+        SYSEXPORT(judas_songisplaying);
+        SYSEXPORT(judas_forwardxm);
+        SYSEXPORT(judas_forwardmod);
+        SYSEXPORT(judas_forwards3m);
+        SYSEXPORT(judas_rewindxm);
+        SYSEXPORT(judas_rewindmod);
+        SYSEXPORT(judas_rewinds3m);
+        SYSEXPORT(judas_setmusicmastervolume);
+        SYSEXPORT(judas_freexm);
+        SYSEXPORT(judas_freemod);
+        SYSEXPORT(judas_frees3m);
+        SYSEXPORT(judas_update);
+        SYSEXPORT(judas_stopxm);
+        SYSEXPORT(judas_stopmod);
+        SYSEXPORT(judas_stops3m);
   }
 }
 

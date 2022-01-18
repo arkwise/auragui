@@ -66,10 +66,10 @@ $(OBJ_DIR)/xapps/laby.o \
 $(OBJ_DIR)/xapps/sample.o \
 $(OBJ_DIR)/xapps/xbatch.o \
 $(OBJ_DIR)/xapps/orchid.o \
-$(OBJ_DIR)/xapps/mbox.o \
 $(OBJ_DIR)/xapps/login.o \
 $(OBJ_DIR)/xapps/myip.o \
-$(OBJ_DIR)/xapps/htmlget.o
+$(OBJ_DIR)/xapps/htmlget.o \
+$(OBJ_DIR)/xapps/mbox.o
 #$(OBJ_DIR)/xapps/ping.o \
 #$(OBJ_DIR)/xapps/convmpeg.o \
 
@@ -416,10 +416,19 @@ $(DYNLDLNK) : obj/dynldlnk.o
 	gcc -g -o $(DYNLDLNK) obj/dynldlnk.o $(LIB_DYNLNK)
 
 $(MAIN) : $(OBJ_LIST1) $(OBJ_LIST2)
-	gcc -g -o $(MAIN) $(OBJ_LIST1) $(OBJ_LIST2) $(LIB_LIST)
+	gcc -g -o $(MAIN) $(OBJ_LIST1) src/xapps/TIMERASM.o $(OBJ_LIST2) $(LIB_LIST)
 
 $(OBJ_DIR)/xlib/%.o: src/xlib/%.c
 	gcc $(CFLAGS) -Dfar= -Dnear= -Dhuge= -c $< -o $@
+
+src/xapps/TIMERASM.o: src/xapps/TIMERASM.ASM
+	nasm $(AFLAGS) $<
+
+$(OBJ_DIR)/xapps/mbox.o: src/xapps/mbox.c
+	gcc $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/exports.o: src/exports.c src/xapps/TIMERASM.o
+	gcc $(CFLAGS) -c $< -o $@ src/xapps/TIMERASM.o
 
 $(OBJ_DIR)/xapps/myip.o: src/xapps/myip.c
 	gcc $(CFLAGS) -c $< -o $@ -lwatt
@@ -431,7 +440,7 @@ $(OBJ_DIR)/illkirch/%.o: src/illkirch/%.c
 	gcc $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/desktop/%.o: src/xapps/desktop/%.c
-	gcc $(CFLAGS) -c $< -o $@	
+	gcc $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/xlib/%.o: src/dms/%.c
 	gcc $(CFLAGS) -c $< -o $@
