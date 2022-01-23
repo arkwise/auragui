@@ -15,7 +15,7 @@ OUr mission is to make Aura/ozone desktop a modern usable retro platform that al
 TCP library (wattcp) has been added to the "aura m5" kernel which requires a ne2000 driver or any packet driver to run the aura kernel and connect to the internet.
 the apps htmlget, myip and PING are NOT public license but i (chelson) have shared them anyway in order for people to make their own apps in the future.
 
-# 2 Judas Library HD ac97 audio (azalia) (to be done)
+# 2 Judas Library HD ac97 audio (azalia) (Working with errors √)
 the plan is to add this to the aura kernel in the next coming weeks. i have been testing this on real hardware with some pretty good success from this project https://github.com/volkertb/JUDAS but i have also made a large amount of updates for more hardware devices.
 
 # 3 netplay, doslife online games service (in development)
